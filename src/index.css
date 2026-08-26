@@ -1,0 +1,78 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --dark-blue: #00313c;
+  --teal: #007681;
+  --light-gray: #b1b3b3;
+  --dark-gray: #63666a;
+  --white: #ffffff;
+  --soft-white: #f7f9f9;
+  --border: #e3e8e9;
+  --text: #102f38;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Libre Franklin", Arial, sans-serif;
+  color: var(--text);
+  background: var(--white);
+  line-height: 1.6;
+}
+
+.eyebrow {
+  color: var(--teal);
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  font-size: 0.78rem;
+  margin-bottom: 16px;
+}
+
+.section-title {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  line-height: 1.1;
+  margin-bottom: 22px;
+  letter-spacing: -0.04em;
+  font-weight: 800;
+  color: var(--text);
+}
+
+.text-link {
+  color: var(--teal);
+  font-weight: 700;
+  display: inline-flex;
+  gap: 10px;
+  align-items: center;
+  margin-top: 25px;
+  transition: all 0.3s ease;
+}
+
+.text-link:hover {
+  gap: 16px;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #f7f9f9;
+}
+::-webkit-scrollbar-thumb {
+  background: #007681;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #00313c;
+}

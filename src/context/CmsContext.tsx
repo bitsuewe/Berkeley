@@ -1,0 +1,206 @@
+import React, { createContext, useContext, useState, useEffect } from 'react';
+import type { ResearchArea, Publication, Article, Person, LabImage, OpenPosition, AccentTheme } from '../types/lab';
+import { INITIAL_RESEARCH_AREAS, INITIAL_PUBLICATIONS, INITIAL_PEOPLE, INITIAL_ARTICLES, INITIAL_LAB_IMAGES, INITIAL_OPEN_POSITIONS } from '../data/initialData';
+
+interface CmsContextType {
+  researchAreas: ResearchArea[];
+  publications: Publication[];
+  people: Person[];
+  articles: Article[];
+  labImages: LabImage[];
+  openPositions: OpenPosition[];
+  accentTheme: AccentTheme;
+  setAccentTheme: (theme: AccentTheme) => void;
+  adminOpen: boolean;
+  setAdminOpen: (open: boolean) => void;
+  
+  // Active modals / drawer detail states
+  selectedResearchArea: ResearchArea | null;
+  setSelectedResearchArea: (area: ResearchArea | null) => void;
+  selectedPublication: Publication | null;
+  setSelectedPublication: (pub: Publication | null) => void;
+  selectedPerson: Person | null;
+  setSelectedPerson: (person: Person | null) => void;
+  selectedArticle: Article | null;
+  setSelectedArticle: (art: Article | null) => void;
+  bibtexImportOpen: boolean;
+  setBibtexImportOpen: (open: boolean) => void;
+
+  // Actions
+  addPublication: (pub: Omit<Publication, 'id'>) => void;
+  deletePublication: (id: string) => void;
+  addPerson: (person: Omit<Person, 'id'>) => void;
+  parseAndImportBibtex: (rawBibtex: string) => number;
+}
+
+const CmsContext = createContext<CmsContextType | undefined>(undefined);
+
+const ACCENT_COLORS: Record<AccentTheme, { main: string; hover: string; light: string; glow: string }> = {
+  cobalt: {
+    main: '#1D4ED8',
+    hover: '#1E40AF',
+    light: 'rgba(29, 78, 216, 0.08)',
+    glow: 'rgba(29, 78, 216, 0.25)',
+  },
+  cyan: {
+    main: '#0284C7',
+    hover: '#0369A1',
+    light: 'rgba(2, 132, 199, 0.08)',
+    glow: 'rgba(2, 132, 199, 0.25)',
+  },
+  orange: {
+    main: '#D9381E',
+    hover: '#B82C15',
+    light: 'rgba(217, 56, 30, 0.08)',
+    glow: 'rgba(217, 56, 30, 0.25)',
+  },
+  green: {
+    main: '#059669',
+    hover: '#047857',
+    light: 'rgba(5, 150, 105, 0.08)',
+    glow: 'rgba(5, 150, 105, 0.25)',
+  },
+  vermilion: {
+    main: '#7C3AED',
+    hover: '#6D28D9',
+    light: 'rgba(124, 58, 237, 0.08)',
+    glow: 'rgba(124, 58, 237, 0.25)',
+  },
+};
+
+export const CmsProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const [researchAreas] = useState<ResearchArea[]>(INITIAL_RESEARCH_AREAS);
+  const [publications, setPublications] = useState<Publication[]>(INITIAL_PUBLICATIONS);
+  const [people, setPeople] = useState<Person[]>(INITIAL_PEOPLE);
+  const [articles] = useState<Article[]>(INITIAL_ARTICLES);
+  const [labImages] = useState<LabImage[]>(INITIAL_LAB_IMAGES);
+  const [openPositions] = useState<OpenPosition[]>(INITIAL_OPEN_POSITIONS);
+  
+  const [accentTheme, setAccentTheme] = useState<AccentTheme>('orange');
+  const [adminOpen, setAdminOpen] = useState<boolean>(false);
+
+  const [selectedResearchArea, setSelectedResearchArea] = useState<ResearchArea | null>(null);
+  const [selectedPublication, setSelectedPublication] = useState<Publication | null>(null);
+  const [selectedPerson, setSelectedPerson] = useState<Person | null>(null);
+  const [selectedArticle, setSelectedArticle] = useState<Article | null>(null);
+  const [bibtexImportOpen, setBibtexImportOpen] = useState<boolean>(false);
+
+  useEffect(() => {
+    const root = document.documentElement;
+    const colors = ACCENT_COLORS[accentTheme] || ACCENT_COLORS.orange;
+    root.style.setProperty('--color-accent', colors.main);
+    root.style.setProperty('--color-accent-hover', colors.hover);
+    root.style.setProperty('--color-accent-light', colors.light);
+    root.style.setProperty('--color-accent-glow', colors.glow);
+  }, [accentTheme]);
+
+  const addPublication = (pubData: Omit<Publication, 'id'>) => {
+    const newPub: Publication = {
+      ...pubData,
+      id: `pub-${Date.now()}`
+    };
+    setPublications(prev => [newPub, ...prev]);
+  };
+
+  const deletePublication = (id: string) => {
+    setPublications(prev => prev.filter(p => p.id !== id));
+  };
+
+  const addPerson = (personData: Omit<Person, 'id'>) => {
+    const newPerson: Person = {
+      ...personData,
+      id: `person-${Date.now()}`
+    };
+    setPeople(prev => [...prev, newPerson]);
+  };
+
+  const parseAndImportBibtex = (rawBibtex: string): number => {
+    let importedCount = 0;
+    const entries = rawBibtex.split(/@(?=article|inproceedings|book|phdthesis|techreport)/i);
+
+    const newPubs: Publication[] = [];
+
+    entries.forEach((entry, idx) => {
+      if (!entry.trim()) return;
+
+      const titleMatch = entry.match(/title\s*=\s*[\{"]([^\}"]+)[\}"]/i);
+      const authorMatch = entry.match(/author\s*=\s*[\{"]([^\}"]+)[\}"]/i);
+      const journalMatch = entry.match(/(?:journal|booktitle)\s*=\s*[\{"]([^\}"]+)[\}"]/i);
+      const yearMatch = entry.match(/year\s*=\s*[\{"]?(\d{4})[\}"]?/i);
+      const doiMatch = entry.match(/doi\s*=\s*[\{"]([^\}"]+)[\}"]/i);
+      const abstractMatch = entry.match(/abstract\s*=\s*[\{"]([^\}"]+)[\}"]/i);
+
+      if (titleMatch && titleMatch[1]) {
+        const title = titleMatch[1].replace(/\s+/g, ' ').trim();
+        const rawAuthors = authorMatch ? authorMatch[1] : 'NEXUS Lab Researcher';
+        const authors = rawAuthors.split(/\s+and\s+/i).map(a => a.trim());
+        const journal = journalMatch ? journalMatch[1].trim() : 'Scientific Publication';
+        const year = yearMatch ? parseInt(yearMatch[1], 10) : new Date().getFullYear();
+        const doi = doiMatch ? doiMatch[1].trim() : `10.1038/nexus-${Date.now()}-${idx}`;
+        const abstract = abstractMatch ? abstractMatch[1].trim() : 'No abstract provided in BibTeX record.';
+
+        newPubs.push({
+          id: `pub-bib-${Date.now()}-${idx}`,
+          title,
+          authors,
+          journal,
+          year,
+          doi,
+          pdfUrl: '#',
+          abstract,
+          researchAreaId: 'res-quantum',
+          featured: false,
+          citationsCount: Math.floor(Math.random() * 15),
+          bibtex: `@article{${authors[0]?.split(' ').pop() || 'Pub'}${year},\n  title={${title}},\n  author={${rawAuthors}},\n  journal={${journal}},\n  year={${year}}\n}`,
+          tags: ['BibTeX Import', journal.split(' ')[0] || 'Research']
+        });
+        importedCount++;
+      }
+    });
+
+    if (newPubs.length > 0) {
+      setPublications(prev => [...newPubs, ...prev]);
+    }
+
+    return importedCount;
+  };
+
+  return (
+    <CmsContext.Provider value={{
+      researchAreas,
+      publications,
+      people,
+      articles,
+      labImages,
+      openPositions,
+      accentTheme,
+      setAccentTheme,
+      adminOpen,
+      setAdminOpen,
+      selectedResearchArea,
+      setSelectedResearchArea,
+      selectedPublication,
+      setSelectedPublication,
+      selectedPerson,
+      setSelectedPerson,
+      selectedArticle,
+      setSelectedArticle,
+      bibtexImportOpen,
+      setBibtexImportOpen,
+      addPublication,
+      deletePublication,
+      addPerson,
+      parseAndImportBibtex,
+    }}>
+      {children}
+    </CmsContext.Provider>
+  );
+};
+
+export const useCms = () => {
+  const context = useContext(CmsContext);
+  if (!context) {
+    throw new Error('useCms must be used within a CmsProvider');
+  }
+  return context;
+};
