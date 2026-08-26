@@ -2,6 +2,7 @@ import React from 'react';
 import { CmsProvider } from './context/CmsContext';
 import { SoundProvider } from './context/SoundContext';
 
+import { SplashScreen } from './components/SplashScreen';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { MarqueeSection } from './components/MarqueeSection';
@@ -24,6 +25,9 @@ export const MainApp: React.FC = () => {
   return (
     <div className="relative min-h-screen bg-[#000f14] text-white font-sans antialiased overflow-x-clip">
       
+      {/* High-Tech Berkeley Laboratory Splash Screen Overlay */}
+      <SplashScreen />
+
       {/* 
         The Main Page Curtain:
         Elevated with shadow and solid background so as you scroll to the bottom, 
