@@ -274,7 +274,7 @@ export const INITIAL_PEOPLE: Person[] = [
     role: 'PI',
     positionTitle: 'Principal Investigator & Director of UC Berkeley Lab',
     bio: 'Dr. Sewasew leads the Living Research Laboratory with a focus on non-equilibrium quantum dynamics, moiré heterostructures, bio-fluidics, and neuromorphic synaptic hardware.',
-    avatar: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=900&q=85',
+    avatar: '/images/dr-sewasew.jpg',
     email: 'sewasew@lbl.gov',
     office: 'UC Berkeley Lab, 1 Cyclotron Rd, Room 412',
     scholarUrl: 'https://scholar.google.com',

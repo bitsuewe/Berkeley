@@ -9,6 +9,7 @@ interface CountUpProps {
   prefix?: string;
   formatCommas?: boolean;
   className?: string;
+  once?: boolean;
 }
 
 export const CountUp: React.FC<CountUpProps> = ({
@@ -19,13 +20,15 @@ export const CountUp: React.FC<CountUpProps> = ({
   prefix = '',
   formatCommas = true,
   className = '',
+  once = false,
 }) => {
   const ref = useRef<HTMLSpanElement>(null);
-  const isInView = useInView(ref, { once: true, margin: '-50px' });
+  const isInView = useInView(ref, { once, margin: '-50px' });
   const [count, setCount] = useState(from);
 
   useEffect(() => {
     if (isInView) {
+      setCount(from);
       const controls = animate(from, to, {
         duration,
         ease: [0.16, 1, 0.3, 1], // Smooth cubic-bezier easeOut

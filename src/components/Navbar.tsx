@@ -34,10 +34,11 @@ export const Navbar: React.FC = () => {
 
   const navLinks = [
     { href: '#research', label: 'Research' },
-    { href: '#breakthroughs', label: 'Breakthroughs' },
-    { href: '#services', label: 'Programs' },
-    { href: '#people', label: 'Personnel' },
-    { href: '#news', label: 'Dispatches' },
+    { href: '#breakthroughs', label: 'People' },
+    { href: '#services', label: 'Publications' },
+    { href: '#news', label: 'Facilities' },
+    { href: '#news', label: 'News' },
+    { href: '#news', label: 'About' },
   ];
 
   const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
@@ -52,15 +53,14 @@ export const Navbar: React.FC = () => {
 
   return (
     <header
-      className={`h-[78px] sm:h-[84px] bg-[#00313c]/90 backdrop-blur-2xl border-b border-[#007681]/30 text-white sticky top-0 z-[1000] transition-transform duration-300 ease-in-out select-none shadow-[0_10px_30px_rgba(0,35,46,0.45)] ${
-        visible ? 'translate-y-0' : '-translate-y-full'
-      }`}
+      className={`h-[78px] sm:h-[84px] bg-[#00313c]/90 backdrop-blur-2xl border-b border-[#007681]/30 text-white sticky top-0 z-[1000] transition-transform duration-300 ease-in-out select-none shadow-[0_10px_30px_rgba(0,35,46,0.45)] ${visible ? 'translate-y-0' : '-translate-y-full'
+        }`}
     >
       <div className="max-w-[1240px] w-[92%] mx-auto h-full flex items-center justify-between gap-6">
-        
+
         {/* Minimalist Brand Logo & Scientific Identifier */}
-        <a 
-          href="#hero" 
+        <a
+          href="#hero"
           onClick={(e) => handleLinkClick(e, '#hero')}
           className="flex items-center gap-3.5 group"
         >

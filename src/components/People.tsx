@@ -16,7 +16,7 @@ export const People: React.FC = () => {
         <div className="lg:col-span-4">
           <div className="aspect-[4/5] rounded-2xl overflow-hidden shadow-xl border-2 border-[#007681]/30">
             <img
-              src={piPerson?.avatar || "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=900&q=85"}
+              src={piPerson?.avatar || "/images/dr-sewasew.jpg"}
               alt="Dr Sewasew - Principal Investigator"
               className="w-full h-full object-cover"
             />

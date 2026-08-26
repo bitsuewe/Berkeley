@@ -18,7 +18,7 @@ export const Stats: React.FC = () => {
             key={idx}
             initial={{ opacity: 0, y: 30, scale: 0.9 }}
             whileInView={{ opacity: 1, y: 0, scale: 1 }}
-            viewport={{ once: true, margin: '-50px' }}
+            viewport={{ once: false, margin: '-50px' }}
             transition={{
               duration: 0.7,
               delay: idx * 0.15,
