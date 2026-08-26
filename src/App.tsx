@@ -22,12 +22,12 @@ import { AdminCmsModal } from './components/modals/AdminCmsModal';
 
 export const MainApp: React.FC = () => {
   return (
-    <div className="relative min-h-screen bg-[#000f14] text-[#102f38] font-sans antialiased overflow-x-clip">
+    <div className="relative min-h-screen bg-[#000f14] text-white font-sans antialiased overflow-x-clip">
       
       {/* 
-        The Curtain (Main Page Container): 
+        The Main Page Curtain:
         Elevated with shadow and solid background so as you scroll to the bottom, 
-        this curtain slides upward, seamlessly revealing the static immovable footer underneath!
+        it smoothly unveils the static immovable footer underneath!
       */}
       <main className="relative z-10 bg-[#00313c] shadow-[0_40px_100px_rgba(0,0,0,0.85)] border-b border-[#007681]/40">
         <Navbar />
@@ -42,7 +42,7 @@ export const MainApp: React.FC = () => {
         <Collaborate />
       </main>
 
-      {/* The Static Curtain-Reveal Footer (Immovable at the bottom) */}
+      {/* The Static Curtain-Reveal Footer */}
       <Footer />
 
       {/* Interactive Modals & Drawers */}

@@ -122,7 +122,7 @@ export const MarqueeSection: React.FC = () => {
   return (
     <section
       ref={sectionRef}
-      className="bg-[#00232e] border-t border-b border-white/10 pt-16 pb-24 overflow-hidden space-y-6 relative z-10 select-none"
+      className="bg-[#00232e] border-t border-b border-[#007681]/30 pt-16 pb-24 overflow-hidden space-y-6 relative z-10 select-none"
     >
       {/* Telemetry Header */}
       <div className="max-w-[1180px] w-[90%] mx-auto flex items-center justify-between mb-2">
@@ -130,7 +130,7 @@ export const MarqueeSection: React.FC = () => {
           <span className="w-2 h-2 rounded-full bg-[#77d5dc] animate-ping" />
           <span>EXPERIMENTAL TELEMETRY & LIVE RESEARCH FEEDS</span>
         </div>
-        <div className="text-[11px] font-mono text-white/50 hidden sm:block">
+        <div className="text-[11px] font-mono text-white/60 hidden sm:block">
           UC BERKELEY LAB // 14 ACTIVE STATIONS
         </div>
       </div>
@@ -155,11 +155,11 @@ export const MarqueeSection: React.FC = () => {
                 loading="lazy"
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-85 group-hover:opacity-100"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#001c25] via-transparent to-transparent p-4 flex flex-col justify-end">
+              <div className="absolute inset-0 bg-gradient-to-t from-[#001c25] via-transparent to-transparent p-5 flex flex-col justify-end">
                 <span className="text-[10px] font-mono font-bold text-[#77d5dc] uppercase tracking-widest">
                   {item.category}
                 </span>
-                <h4 className="text-xs font-bold text-white uppercase tracking-tight">
+                <h4 className="text-sm font-heading font-bold text-white uppercase tracking-wide mt-1">
                   {item.title}
                 </h4>
               </div>
@@ -168,7 +168,7 @@ export const MarqueeSection: React.FC = () => {
         </div>
       </div>
 
-      {/* Row 2: Moves LEFT on scroll - Completely Uncovered with pb-24 padding */}
+      {/* Row 2: Moves LEFT on scroll */}
       <div className="overflow-hidden w-full pb-4">
         <div
           className="flex gap-4 w-max"
@@ -188,11 +188,11 @@ export const MarqueeSection: React.FC = () => {
                 loading="lazy"
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-85 group-hover:opacity-100"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#001c25] via-transparent to-transparent p-4 flex flex-col justify-end">
+              <div className="absolute inset-0 bg-gradient-to-t from-[#001c25] via-transparent to-transparent p-5 flex flex-col justify-end">
                 <span className="text-[10px] font-mono font-bold text-[#77d5dc] uppercase tracking-widest">
                   {item.category}
                 </span>
-                <h4 className="text-xs font-bold text-white uppercase tracking-tight">
+                <h4 className="text-sm font-heading font-bold text-white uppercase tracking-wide mt-1">
                   {item.title}
                 </h4>
               </div>

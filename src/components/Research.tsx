@@ -83,30 +83,27 @@ interface StickyCardProps {
 const PerfectStickyResearchCard: React.FC<StickyCardProps> = ({ card, index, onExplore }) => {
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // Rock-Solid Constant Stacking Offset:
-  // Each card sticks at exact 68px interval (matching the 68px header tab height)
-  // When Card 2 stacks at 92px, Card 1 header stays perfectly visible at 24..92px
-  // When Card 3 stacks at 160px, Card 2 header stays perfectly visible at 92..160px
-  // All headers remain 100% constant, rock-solid, identical width, with zero scaling distortions!
-  const stickyTop = 24 + index * 68;
+  // Tab offset: Card 1 sticks at 96px (safely below 84px navbar).
+  // Each card stacks at 76px interval so the 72px header tab is 100% visible with zero overlap!
+  const stickyTop = 96 + index * 76;
 
   return (
     <div
       ref={containerRef}
-      className="sticky flex items-center justify-center mb-16 last:mb-0"
+      className="sticky flex items-center justify-center mb-24 last:mb-0 min-h-[65vh]"
       style={{
         top: `${stickyTop}px`,
         zIndex: index + 1,
       }}
     >
-      <div className="w-full max-w-6xl rounded-[32px] sm:rounded-[40px] border-2 border-[#007681] bg-[#00232e] text-white p-5 sm:p-7 shadow-[0_25px_60px_rgba(0,0,0,0.7)] flex flex-col justify-between overflow-hidden relative transition-all duration-200 hover:border-[#77d5dc]">
+      <div className="w-full max-w-6xl rounded-[32px] sm:rounded-[40px] border-2 border-[#007681] bg-[#00232e] text-white p-5 sm:p-7 shadow-[0_25px_60px_rgba(0,0,0,0.75)] flex flex-col justify-between overflow-hidden relative transition-all duration-200 hover:border-[#77d5dc]">
         
-        {/* Rock-Solid Constant Header Tab (Exact 68px height across ALL cards) */}
-        <div className="h-[68px] flex items-center justify-between pb-3.5 border-b border-[#007681]/60 mb-4 bg-[#00232e] relative z-10 select-none">
+        {/* Rock-Solid Constant Header Tab (Exact 72px height across ALL cards) */}
+        <div className="h-[72px] flex items-center justify-between pb-3.5 border-b border-[#007681]/60 mb-5 bg-[#00232e] relative z-10 select-none">
           
           {/* Left: Constant Number + Category + Title */}
           <div className="flex items-center gap-3 sm:gap-6 min-w-0">
-            <span className="font-heading font-black text-[clamp(2rem,4.5vw,56px)] text-[#77d5dc] leading-none select-none shrink-0 w-12 sm:w-16">
+            <span className="font-heading font-black text-[clamp(2.2rem,5vw,56px)] text-[#77d5dc] leading-none select-none shrink-0 w-12 sm:w-16">
               {card.number}
             </span>
             <div className="flex flex-col truncate">
@@ -182,10 +179,10 @@ export const Research: React.FC = () => {
   return (
     <section
       id="research"
-      className="bg-[#00313c] text-white relative z-10 px-5 sm:px-8 md:px-10 pt-16 pb-36 border-t border-[#007681]/30"
+      className="bg-[#00313c] text-white relative z-10 px-5 sm:px-8 md:px-10 pt-20 pb-40 border-t border-[#007681]/30"
     >
       {/* Eyebrow & Main Title Header */}
-      <div className="max-w-4xl mx-auto text-center mb-14 space-y-3">
+      <div className="max-w-4xl mx-auto text-center mb-16 space-y-3">
         <FadeIn delay={0} y={20}>
           <div className="eyebrow !text-[#77d5dc]">OUR RESEARCH</div>
         </FadeIn>
@@ -203,8 +200,8 @@ export const Research: React.FC = () => {
         </FadeIn>
       </div>
 
-      {/* Sticky Stacking Cards Container - Constant Header Tabs */}
-      <div className="relative max-w-6xl mx-auto pb-20 space-y-6">
+      {/* Sticky Stacking Cards Container - 96px Base + 76px Step */}
+      <div className="relative max-w-6xl mx-auto pb-24 space-y-8">
         {RESEARCH_CARDS.map((card, idx) => (
           <PerfectStickyResearchCard
             key={card.id}

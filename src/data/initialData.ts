@@ -269,17 +269,17 @@ export const INITIAL_PUBLICATIONS: Publication[] = [
 
 export const INITIAL_PEOPLE: Person[] = [
   {
-    id: 'person-elena',
-    name: 'Prof. Elena Rostova',
+    id: 'person-sewasew',
+    name: 'Dr. Sewasew',
     role: 'PI',
-    positionTitle: 'Director of NEXUS Lab & Professor of Physics',
-    bio: 'Elena leads NEXUS Lab with a focus on non-equilibrium quantum matter, moiré heterostructures, and ultra-cold scanning probe microscopy. Recipient of the 2024 European Physics Medal.',
-    avatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80',
-    email: 'e.rostova@nexus-lab.org',
-    office: 'Physical Sciences Building, Room 412',
+    positionTitle: 'Principal Investigator & Director of UC Berkeley Lab',
+    bio: 'Dr. Sewasew leads the Living Research Laboratory with a focus on non-equilibrium quantum dynamics, moiré heterostructures, bio-fluidics, and neuromorphic synaptic hardware.',
+    avatar: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=900&q=85',
+    email: 'sewasew@lbl.gov',
+    office: 'UC Berkeley Lab, 1 Cyclotron Rd, Room 412',
     scholarUrl: 'https://scholar.google.com',
     orcidUrl: 'https://orcid.org/0000-0002-1825-0097',
-    researchAreaIds: ['res-quantum', 'res-synaptic']
+    researchAreaIds: ['res-quantum', 'res-synaptic', 'res-microfluidic']
   },
   {
     id: 'person-marcus',
