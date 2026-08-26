@@ -1,6 +1,23 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@config "../tailwind.config.js";
+
+@theme {
+  --font-sans: "Libre Franklin", Arial, sans-serif;
+  --font-heading: "Kanit", "Libre Franklin", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  --color-berkeley-blue: #00313c;
+  --color-berkeley-dark-blue: #00232e;
+  --color-berkeley-teal: #007681;
+  --color-berkeley-teal-hover: #005f68;
+  --color-berkeley-light-teal: #77d5dc;
+  --color-berkeley-gray: #63666a;
+  --color-berkeley-light-gray: #b1b3b3;
+  --color-berkeley-border: #e3e8e9;
+  --color-berkeley-text: #102f38;
+  --color-berkeley-bg-soft: #f7f9f9;
+  --color-berkeley-bg-collab: #f0f6f7;
+}
 
 :root {
   --dark-blue: #00313c;
@@ -26,7 +43,7 @@ html {
 body {
   font-family: "Libre Franklin", Arial, sans-serif;
   color: var(--text);
-  background: var(--white);
+  background: #00313c;
   line-height: 1.6;
 }
 
@@ -67,12 +84,12 @@ body {
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #f7f9f9;
+  background: #00232e;
 }
 ::-webkit-scrollbar-thumb {
   background: #007681;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #00313c;
+  background: #77d5dc;
 }
