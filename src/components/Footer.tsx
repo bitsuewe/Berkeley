@@ -1,5 +1,6 @@
 import React from 'react';
-import { ArrowUp, Compass, Mail, MapPin, Sparkles, ExternalLink } from 'lucide-react';
+import { ArrowUp, Compass, Mail, MapPin, Sparkles } from 'lucide-react';
+import { BerkeleyLabLogo } from './BerkeleyLabLogo';
 
 export const Footer: React.FC = () => {
   const scrollToTop = () => {
@@ -21,20 +22,13 @@ export const Footer: React.FC = () => {
           
           {/* Brand Logo & Mission (4 cols) */}
           <div className="lg:col-span-4 space-y-5">
-            <div className="flex items-center gap-3.5">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#007681] to-[#00232e] border border-[#77d5dc]/40 text-white flex items-center justify-center font-heading font-black text-xl shadow-lg">
-                <span className="text-transparent bg-clip-text bg-gradient-to-tr from-white via-[#77d5dc] to-white">
-                  UC
-                </span>
-              </div>
-              <div>
-                <div className="font-heading font-extrabold text-xl leading-none tracking-tight text-white flex items-center gap-2">
-                  BERKELEY LAB
-                  <Sparkles className="w-4 h-4 text-[#77d5dc]" />
-                </div>
-                <div className="text-[11px] font-mono font-bold text-[#77d5dc] tracking-wider uppercase mt-1">
-                  DR SEWASEW RESEARCH GROUP
-                </div>
+            <div className="space-y-3">
+              {/* Official Berkeley Lab Tile & Logotype */}
+              <BerkeleyLabLogo variant="reverse" showTagline={true} size="md" />
+
+              <div className="flex items-center gap-2 text-xs font-mono font-black text-[#77d5dc] bg-[#00232e]/80 px-3 py-1 rounded-lg border border-[#007681]/40 w-max mt-2">
+                <Sparkles className="w-3.5 h-3.5 text-[#77d5dc]" />
+                <span>DR. SEWASEW RESEARCH GROUP</span>
               </div>
             </div>
 
@@ -97,7 +91,7 @@ export const Footer: React.FC = () => {
             </h4>
             <div className="space-y-2 text-xs text-white/75 font-light">
               <a 
-                href="mailto:contact@lbl-sewasew.org" 
+                href="mailto:contact@lbl.gov" 
                 className="hover:text-[#77d5dc] flex items-center gap-1.5 transition-colors"
               >
                 <Mail className="w-3.5 h-3.5 text-[#77d5dc]" />
@@ -117,7 +111,7 @@ export const Footer: React.FC = () => {
         {/* Bottom Bar: Copyright & Back to Top */}
         <div className="pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-white/60 font-mono">
           <div className="flex items-center gap-2">
-            <span>© {new Date().getFullYear()} UC Berkeley Lab & Dr. Sewasew Laboratory.</span>
+            <span>© {new Date().getFullYear()} Lawrence Berkeley National Laboratory & Dr. Sewasew Laboratory.</span>
             <span className="hidden md:inline">• All rights reserved.</span>
           </div>
 

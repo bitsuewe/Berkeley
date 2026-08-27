@@ -3,6 +3,24 @@
 @tailwind utilities;
 
 :root {
+  /* Official Berkeley Lab Primary Palette (Page 12) */
+  --lbl-dark-blue: #00313c;
+  --lbl-teal: #007681;
+  --lbl-light-gray: #b1b3b3;
+  --lbl-dark-gray: #63666a;
+
+  /* Official Berkeley Lab Secondary Accent Palette (Page 13) */
+  --lbl-orange: #d57800;
+  --lbl-green: #74aa50;
+  --lbl-yellow: #eaaa00;
+  --lbl-red: #e04e39;
+  --lbl-blue: #4298b5;
+  --lbl-purple: #5d4777;
+  --lbl-dusty-rose: #e8927c;
+  --lbl-olive-green: #ac9f3c;
+  --lbl-burgundy: #672e45;
+
+  /* Legacy UI Tokens */
   --dark-blue: #00313c;
   --teal: #007681;
   --light-gray: #b1b3b3;
@@ -24,7 +42,7 @@ html {
 }
 
 body {
-  font-family: "Libre Franklin", Arial, sans-serif;
+  font-family: "Open Sans", "Libre Franklin", Arial, sans-serif;
   color: var(--text);
   background: #00313c;
   line-height: 1.6;

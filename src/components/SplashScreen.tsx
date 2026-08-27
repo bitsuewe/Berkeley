@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Atom, Cpu } from 'lucide-react';
+import { Cpu } from 'lucide-react';
+import { BerkeleyLabLogo } from './BerkeleyLabLogo';
 
 const TELEMETRY_STEPS = [
   'INITIALIZING QUANTUM DYNAMICS...',
@@ -75,26 +76,17 @@ export const SplashScreen: React.FC = () => {
 
         {/* Central Logo & Laboratory Telemetry */}
         <div className="flex flex-col items-center text-center space-y-8 relative z-10 my-auto">
-          {/* High-Tech Animated Quantum Icon Badge */}
-          <div className="relative w-24 h-24 sm:w-28 sm:h-28 flex items-center justify-center">
-            {/* Outer Rotating Glowing Ring */}
-            <div className="absolute inset-0 rounded-full border-2 border-t-[#007681] border-r-transparent border-b-[#77d5dc]/50 border-l-transparent animate-spin duration-1000" />
-            <div className="absolute inset-2 rounded-full border border-dashed border-[#007681]/40 animate-pulse" />
-            
-            {/* Inner Pulsing Atom Icon */}
-            <div className="w-16 h-16 rounded-2xl bg-[#007681]/20 border border-[#007681]/50 backdrop-blur-md flex items-center justify-center shadow-[0_0_30px_rgba(0,118,129,0.5)]">
-              <Atom className="w-8 h-8 text-[#77d5dc] animate-pulse" />
-            </div>
+          {/* Official Berkeley Lab Symbol Tile */}
+          <div className="scale-125 sm:scale-150 mb-2">
+            <BerkeleyLabLogo variant="reverse" showTagline={true} size="lg" />
           </div>
 
-          {/* Title & Subtitle */}
-          <div className="space-y-2 max-w-lg">
-            <h1 className="font-heading font-black text-3xl sm:text-5xl text-white tracking-tight uppercase leading-none">
-              Dr. Sewasew <span className="text-[#77d5dc]">Lab</span>
-            </h1>
-            <p className="font-mono text-xs sm:text-sm text-[#007681] tracking-widest uppercase font-bold">
-              UC Berkeley & Lawrence Berkeley National Lab
-            </p>
+          {/* Laboratory Badge */}
+          <div className="space-y-2 max-w-lg pt-2">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#007681]/20 text-[#77d5dc] border border-[#007681]/50 font-mono text-xs font-black tracking-widest uppercase">
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+              <span>DR. SEWASEW LABORATORY</span>
+            </div>
           </div>
 
           {/* Dynamic Telemetry Status Text */}
