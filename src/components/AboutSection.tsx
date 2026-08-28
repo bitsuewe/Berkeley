@@ -11,11 +11,13 @@ export const AboutSection: React.FC = () => {
       <div className="max-w-[1280px] w-[92%] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
         
         {/* Left Column (Photo headshot matching screenshot) */}
-        <div className="lg:col-span-4">
-          <div className="aspect-[3/4] max-h-[500px] rounded-xl overflow-hidden shadow-lg border border-slate-200 bg-slate-100">
+        <div className="lg:col-span-4 flex justify-center lg:justify-start">
+          <div className="w-full max-w-[340px] sm:max-w-[380px] lg:max-w-none aspect-[3/4] max-h-[480px] rounded-xl sm:rounded-2xl overflow-hidden shadow-lg border border-slate-200 bg-slate-100">
             <img
               src={piPerson?.avatar || '/images/dr-sewasew.jpg'}
               alt="Dr. Sewasew - Principal Investigator"
+              loading="lazy"
+              decoding="async"
               className="w-full h-full object-cover object-top"
             />
           </div>

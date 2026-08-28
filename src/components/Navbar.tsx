@@ -68,37 +68,39 @@ export const Navbar: React.FC = () => {
     <header className={`h-[84px] bg-white border-b border-slate-100 text-[#153358] sticky top-0 z-[1000] select-none shadow-[0_1px_4px_rgba(0,0,0,0.06)] transition-transform duration-300 ease-in-out ${
       visible ? 'translate-y-0' : '-translate-y-full'
     }`}>
-      <div className="max-w-[1380px] w-[95%] mx-auto h-full flex items-center justify-between gap-4">
+      <div className="max-w-[1380px] w-[94%] sm:w-[95%] mx-auto h-full flex items-center justify-between gap-3 sm:gap-4">
 
         {/* Brand Logo with Berkeley Lab Logo Symbol (Left) */}
         <div
           onClick={handleLogoClick}
-          className="flex items-center gap-3.5 shrink-0 group cursor-pointer"
+          className="flex items-center gap-2.5 sm:gap-3.5 shrink-0 group cursor-pointer"
         >
-          {/* Restored Berkeley Lab Logo */}
-          <BerkeleyLabLogo variant="default" showTagline={false} size="sm" />
+          {/* Berkeley Lab Logo: Restored on tablet and desktop (md+) screens */}
+          <div className="hidden sm:flex items-center shrink-0">
+            <BerkeleyLabLogo variant="default" showTagline={false} size="sm" />
+          </div>
 
-          {/* Typography */}
-          <div className="flex flex-col justify-center border-l border-slate-200 pl-3">
-            <span className="font-heading font-extrabold text-[0.98rem] sm:text-[1.12rem] text-[#153358] tracking-tight uppercase leading-none group-hover:text-[#007681] transition-colors">
+          {/* Typography + Restored Always-Visible Tagline/Motto */}
+          <div className="flex flex-col justify-center sm:border-l sm:border-slate-200 sm:pl-3">
+            <span className="font-heading font-extrabold text-[0.88rem] sm:text-[1.02rem] md:text-[1.12rem] text-[#153358] tracking-tight uppercase leading-none group-hover:text-[#007681] transition-colors">
               SEWASEW HAILESELASSIE
             </span>
-            <span className="text-[10.5px] sm:text-[11.5px] font-sans text-[#2c4e78] font-medium tracking-normal mt-1 leading-none">
+            <span className="text-[9.5px] sm:text-[10.5px] md:text-[11.5px] font-sans text-[#2c4e78] font-medium tracking-normal mt-1 leading-none">
               African Archaeology, History &amp; Human Evolution
             </span>
           </div>
         </div>
 
-        {/* Navigation Links (Middle/Right) - Always cleanly visible on desktop and tablet */}
-        <div className="flex items-center gap-4 sm:gap-6 md:gap-8">
+        {/* Navigation Links (Middle/Right) */}
+        <div className="flex items-center gap-2 sm:gap-3 lg:gap-6 shrink-0">
           
-          {/* Nav Links */}
-          <nav className="hidden md:flex items-center gap-5 lg:gap-8 text-[0.92rem] lg:text-[0.98rem] font-semibold text-[#153358]">
+          {/* Nav Links: Visible on Desktop & Tablet (>=768px) outside hamburger menu */}
+          <nav className="hidden md:flex items-center gap-2.5 lg:gap-6 xl:gap-8 text-[0.82rem] lg:text-[0.94rem] xl:text-[0.98rem] font-semibold text-[#153358]">
             {navLinks.map((link) => (
               <button
                 key={link.label}
                 onClick={() => handleNavClick(link.view, link.hash)}
-                className={`py-1 relative font-sans whitespace-nowrap cursor-pointer transition-colors ${
+                className={`py-1 px-1 relative font-sans whitespace-nowrap cursor-pointer transition-colors ${
                   currentView === link.view && link.view !== 'home'
                     ? 'text-[#007681] font-bold'
                     : 'text-[#153358] hover:text-[#007681]'
@@ -112,41 +114,40 @@ export const Navbar: React.FC = () => {
             ))}
           </nav>
 
-          {/* Contact Button & Search Icon - ALWAYS VISIBLE */}
-          <div className="flex items-center gap-3 sm:gap-4 shrink-0">
-            <button
-              onClick={() => handleNavClick('home', '#contact')}
-              className="inline-flex items-center justify-center bg-[#091f3c] hover:bg-[#153358] text-white px-5 sm:px-6 py-2 sm:py-2.5 rounded-[6px] font-semibold text-xs sm:text-[0.92rem] transition-all cursor-pointer shadow-sm whitespace-nowrap"
-            >
-              Contact
-            </button>
+          {/* Contact Button: Visible on Desktop & Tablet (>=768px) outside hamburger menu */}
+          <button
+            onClick={() => handleNavClick('home', '#contact')}
+            className="hidden md:inline-flex items-center justify-center bg-[#091f3c] hover:bg-[#153358] text-white px-3.5 lg:px-6 py-1.5 lg:py-2.5 rounded-[6px] font-semibold text-xs lg:text-[0.92rem] transition-all cursor-pointer shadow-sm whitespace-nowrap"
+          >
+            Contact
+          </button>
 
-            <button
-              onClick={() => setSearchModalOpen(true)}
-              className="text-[#153358] hover:text-[#007681] p-1.5 transition-colors cursor-pointer hover:bg-slate-100 rounded-full"
-              aria-label="Search"
-              title="Search database (Ctrl+K)"
-            >
-              <Search className="w-[19px] h-[19px] stroke-[2.2]" />
-            </button>
+          {/* Search Icon Button */}
+          <button
+            onClick={() => setSearchModalOpen(true)}
+            className="text-[#153358] hover:text-[#007681] p-1.5 sm:p-2 transition-colors cursor-pointer hover:bg-slate-100 rounded-full"
+            aria-label="Search"
+            title="Search database (Ctrl+K)"
+          >
+            <Search className="w-5 h-5 stroke-[2.2]" />
+          </button>
 
-            {/* Mobile Toggle Button */}
-            <button
-              onClick={() => setMobileOpen(!mobileOpen)}
-              className="md:hidden text-[#153358] p-1.5 rounded-md hover:bg-slate-100 cursor-pointer ml-1"
-              aria-label="Toggle Navigation"
-            >
-              {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-            </button>
-          </div>
+          {/* Mobile Toggle Button (Visible only on small screens <768px) */}
+          <button
+            onClick={() => setMobileOpen(!mobileOpen)}
+            className="md:hidden text-[#153358] p-1.5 rounded-md hover:bg-slate-100 cursor-pointer"
+            aria-label="Toggle Navigation"
+          >
+            {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
 
         </div>
 
       </div>
 
-      {/* Mobile Menu Dropdown */}
+      {/* Mobile Menu Dropdown (Visible only on small screens <768px) */}
       {mobileOpen && (
-        <div className="md:hidden bg-white border-b border-slate-200 px-6 py-6 space-y-3 font-bold text-sm text-[#153358] shadow-2xl animate-in slide-in-from-top-2">
+        <div className="md:hidden bg-white border-b border-slate-200 px-5 sm:px-6 py-5 space-y-3 font-bold text-sm text-[#153358] shadow-2xl animate-in slide-in-from-top-2">
           {navLinks.map((link) => (
             <button
               key={link.label}
@@ -156,10 +157,22 @@ export const Navbar: React.FC = () => {
               {link.label}
             </button>
           ))}
-          <div className="pt-2">
+          
+          <div className="pt-2 space-y-2">
+            <button
+              onClick={() => {
+                setMobileOpen(false);
+                setSearchModalOpen(true);
+              }}
+              className="w-full flex items-center justify-center gap-2 border border-slate-200 text-slate-700 py-2.5 rounded-md font-bold text-xs uppercase tracking-wider hover:bg-slate-50 transition-colors"
+            >
+              <Search className="w-4 h-4" />
+              <span>Search Database</span>
+            </button>
+
             <button
               onClick={() => handleNavClick('home', '#contact')}
-              className="w-full inline-flex items-center justify-center bg-[#091f3c] text-white py-3 rounded-md font-bold text-xs uppercase tracking-wider shadow-sm cursor-pointer"
+              className="w-full inline-flex items-center justify-center bg-[#091f3c] text-white py-3 rounded-md font-bold text-xs uppercase tracking-wider shadow-sm cursor-pointer hover:bg-[#153358] transition-colors"
             >
               Contact Us
             </button>

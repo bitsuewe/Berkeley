@@ -1,9 +1,12 @@
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { useCms } from '../context/CmsContext';
 import { BerkeleyArchitecturalMark } from './BerkeleyArchitecturalMark';
 
 export const Hero: React.FC = () => {
+  const { setCurrentView } = useCms();
+
   return (
     <section id="hero" className="relative min-h-[600px] sm:min-h-[660px] lg:min-h-[700px] bg-[#00232e] text-white flex items-center overflow-hidden select-none">
       
@@ -15,8 +18,8 @@ export const Hero: React.FC = () => {
         }}
       />
 
-      {/* Main Container */}
-      <div className="max-w-[1360px] w-[92%] mx-auto relative z-10 py-16 sm:py-20 lg:py-24">
+      {/* Main Container - Always in Front (z-20) of Background & Logo */}
+      <div className="max-w-[1360px] w-[92%] mx-auto relative z-20 py-16 sm:py-20 lg:py-24">
         
         {/* Left Column Content */}
         <div className="max-w-2xl lg:max-w-3xl space-y-6">
@@ -47,10 +50,8 @@ export const Hero: React.FC = () => {
           >
             <button
               onClick={() => {
-                const el = document.getElementById('research');
-                if (el) {
-                  el.scrollIntoView({ behavior: 'smooth' });
-                }
+                setCurrentView('all-research');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
               className="inline-flex items-center gap-2.5 bg-[#007681] hover:bg-[#005a63] text-white px-7 py-3.5 rounded-md font-bold text-sm uppercase tracking-wider transition-all shadow-lg group cursor-pointer"
             >
@@ -63,8 +64,8 @@ export const Hero: React.FC = () => {
 
       </div>
 
-      {/* Architectural Logo Anchor at the Bottom Right of the Hero/Background */}
-      <div className="absolute right-0 bottom-0 w-[280px] sm:w-[380px] md:w-[460px] lg:w-[560px] pointer-events-none z-10 opacity-85 translate-y-[2px]">
+      {/* Architectural Logo Anchor - Positioned Behind Content (z-[1]), In Front of Background (z-0) */}
+      <div className="absolute right-0 bottom-0 w-[280px] sm:w-[380px] md:w-[460px] lg:w-[560px] pointer-events-none z-[1] opacity-50 sm:opacity-70 lg:opacity-85 translate-y-[2px]">
         <BerkeleyArchitecturalMark strokeColor="white" strokeWidth={10} className="w-full h-auto drop-shadow-[0_4px_20px_rgba(0,0,0,0.5)]" />
       </div>
 

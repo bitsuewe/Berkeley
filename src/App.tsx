@@ -22,6 +22,7 @@ import { PersonModal } from './components/modals/PersonModal';
 import { ArticleModal } from './components/modals/ArticleModal';
 import { AdminCmsModal } from './components/modals/AdminCmsModal';
 import { SearchModal } from './components/modals/SearchModal';
+import { ResearchModal } from './components/modals/ResearchModal';
 
 export const MainApp: React.FC = () => {
   const { currentView } = useCms();
@@ -54,6 +55,7 @@ export const MainApp: React.FC = () => {
       <Footer />
 
       {/* Interactive Modals */}
+      <ResearchModal />
       <PublicationModal />
       <BibtexImportModal />
       <PersonModal />

@@ -102,9 +102,18 @@ export const Research: React.FC = () => {
                   </p>
                 </div>
 
-                <div className="pt-3 border-t border-slate-100 flex items-center gap-1.5 text-xs font-bold text-[#007681] group-hover:text-[#005a63]">
-                  <span>View research</span>
-                  <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                <div className="pt-3 border-t border-slate-100 flex items-center justify-between">
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleExplore(item.areaId);
+                    }}
+                    className="flex items-center gap-1.5 text-xs font-bold text-[#007681] group-hover:text-[#005a63] cursor-pointer hover:underline"
+                  >
+                    <span>View research</span>
+                    <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                  </button>
                 </div>
               </div>
 

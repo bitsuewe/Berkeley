@@ -3,7 +3,7 @@ import { ArrowRight } from 'lucide-react';
 import { useCms } from '../context/CmsContext';
 
 export const News: React.FC = () => {
-  const { articles, setSelectedArticle } = useCms();
+  const { articles, setSelectedArticle, setCurrentView } = useCms();
 
   const newsItems = [
     {
