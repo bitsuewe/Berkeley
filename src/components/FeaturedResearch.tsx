@@ -52,6 +52,8 @@ export const FeaturedResearch: React.FC = () => {
                 <img
                   src={pub.heroImage || 'https://images.unsplash.com/photo-1507668077129-56e32842fceb?auto=format&fit=crop&w=800&q=80'}
                   alt={pub.title}
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90"
                 />
               </div>
