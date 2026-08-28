@@ -2,7 +2,14 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 import type { ResearchArea, Publication, Article, Person, LabImage, OpenPosition, AccentTheme } from '../types/lab';
 import { INITIAL_RESEARCH_AREAS, INITIAL_PUBLICATIONS, INITIAL_PEOPLE, INITIAL_ARTICLES, INITIAL_LAB_IMAGES, INITIAL_OPEN_POSITIONS } from '../data/initialData';
 
+export type AppView = 'home' | 'all-research' | 'all-publications' | 'all-news' | 'all-people';
+
 interface CmsContextType {
+  currentView: AppView;
+  setCurrentView: (view: AppView) => void;
+  searchModalOpen: boolean;
+  setSearchModalOpen: (open: boolean) => void;
+
   researchAreas: ResearchArea[];
   publications: Publication[];
   people: Person[];
@@ -69,6 +76,9 @@ const ACCENT_COLORS: Record<AccentTheme, { main: string; hover: string; light: s
 };
 
 export const CmsProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const [currentView, setCurrentView] = useState<AppView>('home');
+  const [searchModalOpen, setSearchModalOpen] = useState<boolean>(false);
+
   const [researchAreas] = useState<ResearchArea[]>(INITIAL_RESEARCH_AREAS);
   const [publications, setPublications] = useState<Publication[]>(INITIAL_PUBLICATIONS);
   const [people, setPeople] = useState<Person[]>(INITIAL_PEOPLE);
@@ -167,6 +177,10 @@ export const CmsProvider: React.FC<{ children: React.ReactNode }> = ({ children 
 
   return (
     <CmsContext.Provider value={{
+      currentView,
+      setCurrentView,
+      searchModalOpen,
+      setSearchModalOpen,
       researchAreas,
       publications,
       people,

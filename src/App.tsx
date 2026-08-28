@@ -1,60 +1,65 @@
 import React from 'react';
-import { CmsProvider } from './context/CmsContext';
+import { CmsProvider, useCms } from './context/CmsContext';
 import { SoundProvider } from './context/SoundContext';
 
-import { SplashScreen } from './components/SplashScreen';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
-import { MarqueeSection } from './components/MarqueeSection';
 import { Research } from './components/Research';
-import { ServicesSection } from './components/ServicesSection';
 import { FeaturedResearch } from './components/FeaturedResearch';
-import { People } from './components/People';
-import { Stats } from './components/Stats';
+import { AboutSection } from './components/AboutSection';
 import { News } from './components/News';
 import { Collaborate } from './components/Collaborate';
 import { Footer } from './components/Footer';
+
+import { AllResearchPage } from './components/pages/AllResearchPage';
+import { AllPublicationsPage } from './components/pages/AllPublicationsPage';
+import { AllNewsPage } from './components/pages/AllNewsPage';
+import { AllPeoplePage } from './components/pages/AllPeoplePage';
 
 import { PublicationModal } from './components/modals/PublicationModal';
 import { BibtexImportModal } from './components/modals/BibtexImportModal';
 import { PersonModal } from './components/modals/PersonModal';
 import { ArticleModal } from './components/modals/ArticleModal';
 import { AdminCmsModal } from './components/modals/AdminCmsModal';
+import { SearchModal } from './components/modals/SearchModal';
 
 export const MainApp: React.FC = () => {
-  return (
-    <div className="relative min-h-screen bg-[#000f14] text-white font-sans antialiased overflow-x-clip">
-      
-      {/* High-Tech Berkeley Laboratory Splash Screen Overlay */}
-      <SplashScreen />
+  const { currentView } = useCms();
 
-      {/* 
-        The Main Page Curtain:
-        Elevated with shadow and solid background so as you scroll to the bottom, 
-        it smoothly unveils the static immovable footer underneath!
-      */}
-      <main className="relative z-10 bg-[#00313c] shadow-[0_40px_100px_rgba(0,0,0,0.85)] border-b border-[#007681]/40">
-        <Navbar />
-        <Hero />
-        <MarqueeSection />
-        <Research />
-        <ServicesSection />
-        <FeaturedResearch />
-        <People />
-        <Stats />
-        <News />
-        <Collaborate />
+  return (
+    <div className="min-h-screen bg-slate-50 text-[#00232e] font-sans antialiased">
+      {/* Top Navbar */}
+      <Navbar />
+
+      {/* Main Content Router based on currentView */}
+      <main>
+        {currentView === 'home' && (
+          <>
+            <Hero />
+            <Research />
+            <FeaturedResearch />
+            <AboutSection />
+            <News />
+            <Collaborate />
+          </>
+        )}
+
+        {currentView === 'all-research' && <AllResearchPage />}
+        {currentView === 'all-publications' && <AllPublicationsPage />}
+        {currentView === 'all-news' && <AllNewsPage />}
+        {currentView === 'all-people' && <AllPeoplePage />}
       </main>
 
-      {/* The Static Curtain-Reveal Footer */}
+      {/* Footer */}
       <Footer />
 
-      {/* Interactive Modals & Drawers */}
+      {/* Interactive Modals */}
       <PublicationModal />
       <BibtexImportModal />
       <PersonModal />
       <ArticleModal />
       <AdminCmsModal />
+      <SearchModal />
     </div>
   );
 };
@@ -68,3 +73,5 @@ export default function App() {
     </CmsProvider>
   );
 }
+
+

@@ -1,150 +1,176 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, ArrowUpRight } from 'lucide-react';
-import { useSound } from '../context/SoundContext';
+import { Menu, X, Search } from 'lucide-react';
 import { BerkeleyLabLogo } from './BerkeleyLabLogo';
+import { useCms } from '../context/CmsContext';
 
 export const Navbar: React.FC = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [visible, setVisible] = useState(true);
-  const [prevScrollPos, setPrevScrollPos] = useState(0);
-  const { playClick } = useSound();
-  const [systemTime, setSystemTime] = useState<string>('');
+  const { currentView, setCurrentView, setSearchModalOpen } = useCms();
 
   useEffect(() => {
+    let lastScrollY = window.scrollY;
+
     const handleScroll = () => {
-      const currentScrollPos = window.scrollY;
-      const isVisible = prevScrollPos > currentScrollPos || currentScrollPos < 80;
-      setVisible(isVisible);
-      setPrevScrollPos(currentScrollPos);
+      const currentScrollY = window.scrollY;
+
+      // Always show at top
+      if (currentScrollY < 60) {
+        setVisible(true);
+      } else if (currentScrollY > lastScrollY && currentScrollY - lastScrollY > 8) {
+        // Scrolling DOWN -> hide header
+        setVisible(false);
+        setMobileOpen(false);
+      } else if (currentScrollY < lastScrollY && lastScrollY - currentScrollY > 8) {
+        // Scrolling UP -> show header
+        setVisible(true);
+      }
+      lastScrollY = currentScrollY;
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [prevScrollPos]);
-
-  useEffect(() => {
-    const updateTime = () => {
-      const now = new Date();
-      setSystemTime(now.toTimeString().split(' ')[0] + ' UTC');
-    };
-    updateTime();
-    const interval = setInterval(updateTime, 1000);
-    return () => clearInterval(interval);
   }, []);
 
   const navLinks = [
-    { href: '#research', label: 'Research' },
-    { href: '#people', label: 'People' },
-    { href: '#services', label: 'Programs' },
-    { href: '#featured-research', label: 'Publications' },
-    { href: '#news', label: 'News' },
-    { href: '#contact', label: 'Contact' },
+    { label: 'Research', view: 'all-research' as const, hash: '#research' },
+    { label: 'Publications', view: 'all-publications' as const, hash: '#featured-research' },
+    { label: 'News', view: 'all-news' as const, hash: '#news' },
+    { label: 'People', view: 'all-people' as const, hash: '#people' },
+    { label: 'About', view: 'home' as const, hash: '#about' },
   ];
 
-  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    e.preventDefault();
-    playClick();
+  const handleNavClick = (view: 'all-research' | 'all-publications' | 'all-news' | 'all-people' | 'home', hash: string) => {
     setMobileOpen(false);
-    const target = document.querySelector(href);
-    if (target) {
-      target.scrollIntoView({ behavior: 'smooth' });
+    if (view !== 'home') {
+      setCurrentView(view);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      if (currentView !== 'home') {
+        setCurrentView('home');
+        setTimeout(() => {
+          const el = document.querySelector(hash);
+          if (el) el.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+      } else {
+        const el = document.querySelector(hash);
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+      }
     }
   };
 
+  const handleLogoClick = () => {
+    setCurrentView('home');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
-    <header
-      className={`h-[78px] sm:h-[84px] bg-[#00313c]/90 backdrop-blur-2xl border-b border-[#007681]/30 text-white sticky top-0 z-[1000] transition-transform duration-300 ease-in-out select-none shadow-[0_10px_30px_rgba(0,35,46,0.45)] ${
-        visible ? 'translate-y-0' : '-translate-y-full'
-      }`}
-    >
-      <div className="max-w-[1240px] w-[92%] mx-auto h-full flex items-center justify-between gap-6">
+    <header className={`h-[84px] bg-white border-b border-slate-100 text-[#153358] sticky top-0 z-[1000] select-none shadow-[0_1px_4px_rgba(0,0,0,0.06)] transition-transform duration-300 ease-in-out ${
+      visible ? 'translate-y-0' : '-translate-y-full'
+    }`}>
+      <div className="max-w-[1380px] w-[95%] mx-auto h-full flex items-center justify-between gap-4">
 
-        {/* Official Berkeley Lab Brand Logo & Dr. Sewasew Laboratory Badge */}
-        <a
-          href="#hero"
-          onClick={(e) => handleLinkClick(e, '#hero')}
-          className="flex items-center gap-3.5 group"
+        {/* Brand Logo with Berkeley Lab Logo Symbol (Left) */}
+        <div
+          onClick={handleLogoClick}
+          className="flex items-center gap-3.5 shrink-0 group cursor-pointer"
         >
-          {/* Official Berkeley Lab Tile & Logotype */}
-          <BerkeleyLabLogo variant="reverse" showTagline={false} size="sm" />
+          {/* Restored Berkeley Lab Logo */}
+          <BerkeleyLabLogo variant="default" showTagline={false} size="sm" />
 
-          {/* Laboratory Identifier Badge */}
-          <div className="hidden sm:flex flex-col border-l border-[#007681]/50 pl-3">
-            <div className="flex items-center gap-1.5 text-xs font-mono font-black text-[#77d5dc]">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-              <span>DR. SEWASEW LAB</span>
-            </div>
-            <div className="text-[9px] font-mono text-white/60 tracking-widest uppercase">
-              {systemTime || 'LIVE UTC'}
-            </div>
+          {/* Typography */}
+          <div className="flex flex-col justify-center border-l border-slate-200 pl-3">
+            <span className="font-heading font-extrabold text-[0.98rem] sm:text-[1.12rem] text-[#153358] tracking-tight uppercase leading-none group-hover:text-[#007681] transition-colors">
+              SEWASEW HAILESELASSIE
+            </span>
+            <span className="text-[10.5px] sm:text-[11.5px] font-sans text-[#2c4e78] font-medium tracking-normal mt-1 leading-none">
+              African Archaeology, History &amp; Human Evolution
+            </span>
           </div>
-        </a>
-
-        {/* Clean Minimalist Desktop Navigation Links */}
-        <nav className="hidden md:flex items-center gap-8 text-[0.88rem] font-medium tracking-wide">
-          {navLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              onClick={(e) => handleLinkClick(e, link.href)}
-              className="text-white/80 hover:text-[#77d5dc] transition-colors relative py-1.5 group flex items-center gap-1 font-mono text-xs uppercase tracking-wider font-bold"
-            >
-              <span>{link.label}</span>
-              <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-gradient-to-r from-[#77d5dc] to-[#007681] group-hover:w-full transition-all duration-300" />
-            </a>
-          ))}
-        </nav>
-
-        {/* Right CTA Button */}
-        <div className="hidden md:flex items-center gap-4">
-          <a
-            href="#contact"
-            onClick={(e) => handleLinkClick(e, '#contact')}
-            className="inline-flex items-center gap-2 rounded-full border-2 border-[#77d5dc] bg-[#00232e] hover:bg-[#77d5dc] text-[#77d5dc] hover:text-[#00232e] font-mono font-bold uppercase tracking-wider px-4 py-2 text-xs transition-all duration-200 cursor-pointer shadow-md group"
-          >
-            <span>Collaborate</span>
-            <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-          </a>
         </div>
 
-        {/* Mobile Hamburger Toggle */}
-        <button
-          onClick={() => {
-            playClick();
-            setMobileOpen(!mobileOpen);
-          }}
-          className="md:hidden text-white/90 hover:text-white p-2 rounded-xl bg-white/5 border border-white/10"
-        >
-          {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-        </button>
+        {/* Navigation Links (Middle/Right) - Always cleanly visible on desktop and tablet */}
+        <div className="flex items-center gap-4 sm:gap-6 md:gap-8">
+          
+          {/* Nav Links */}
+          <nav className="hidden md:flex items-center gap-5 lg:gap-8 text-[0.92rem] lg:text-[0.98rem] font-semibold text-[#153358]">
+            {navLinks.map((link) => (
+              <button
+                key={link.label}
+                onClick={() => handleNavClick(link.view, link.hash)}
+                className={`py-1 relative font-sans whitespace-nowrap cursor-pointer transition-colors ${
+                  currentView === link.view && link.view !== 'home'
+                    ? 'text-[#007681] font-bold'
+                    : 'text-[#153358] hover:text-[#007681]'
+                }`}
+              >
+                <span>{link.label}</span>
+                {currentView === link.view && link.view !== 'home' && (
+                  <span className="absolute bottom-0 left-0 w-full h-[2px] bg-[#007681] rounded-full" />
+                )}
+              </button>
+            ))}
+          </nav>
+
+          {/* Contact Button & Search Icon - ALWAYS VISIBLE */}
+          <div className="flex items-center gap-3 sm:gap-4 shrink-0">
+            <button
+              onClick={() => handleNavClick('home', '#contact')}
+              className="inline-flex items-center justify-center bg-[#091f3c] hover:bg-[#153358] text-white px-5 sm:px-6 py-2 sm:py-2.5 rounded-[6px] font-semibold text-xs sm:text-[0.92rem] transition-all cursor-pointer shadow-sm whitespace-nowrap"
+            >
+              Contact
+            </button>
+
+            <button
+              onClick={() => setSearchModalOpen(true)}
+              className="text-[#153358] hover:text-[#007681] p-1.5 transition-colors cursor-pointer hover:bg-slate-100 rounded-full"
+              aria-label="Search"
+              title="Search database (Ctrl+K)"
+            >
+              <Search className="w-[19px] h-[19px] stroke-[2.2]" />
+            </button>
+
+            {/* Mobile Toggle Button */}
+            <button
+              onClick={() => setMobileOpen(!mobileOpen)}
+              className="md:hidden text-[#153358] p-1.5 rounded-md hover:bg-slate-100 cursor-pointer ml-1"
+              aria-label="Toggle Navigation"
+            >
+              {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
+          </div>
+
+        </div>
 
       </div>
 
-      {/* Mobile Drawer */}
+      {/* Mobile Menu Dropdown */}
       {mobileOpen && (
-        <div className="md:hidden bg-[#00232e] border-b border-[#007681]/40 px-6 py-6 space-y-4 font-mono text-sm uppercase font-bold text-white shadow-2xl">
+        <div className="md:hidden bg-white border-b border-slate-200 px-6 py-6 space-y-3 font-bold text-sm text-[#153358] shadow-2xl animate-in slide-in-from-top-2">
           {navLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              onClick={(e) => handleLinkClick(e, link.href)}
-              className="block py-2 border-b border-white/10 hover:text-[#77d5dc] transition-colors"
+            <button
+              key={link.label}
+              onClick={() => handleNavClick(link.view, link.hash)}
+              className="block w-full text-left py-2.5 border-b border-slate-100 hover:text-[#007681] transition-colors"
             >
               {link.label}
-            </a>
+            </button>
           ))}
           <div className="pt-2">
-            <a
-              href="#contact"
-              onClick={(e) => handleLinkClick(e, '#contact')}
-              className="w-full inline-flex items-center justify-center gap-2 rounded-full bg-[#007681] text-white py-3 font-bold"
+            <button
+              onClick={() => handleNavClick('home', '#contact')}
+              className="w-full inline-flex items-center justify-center bg-[#091f3c] text-white py-3 rounded-md font-bold text-xs uppercase tracking-wider shadow-sm cursor-pointer"
             >
-              <span>Collaborate With Us</span>
-              <ArrowUpRight className="w-4 h-4" />
-            </a>
+              Contact Us
+            </button>
           </div>
         </div>
       )}
     </header>
   );
 };
+
+
+
+
+

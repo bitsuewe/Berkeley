@@ -2,267 +2,278 @@ import type { ResearchArea, Publication, Article, Person, LabImage, OpenPosition
 
 export const INITIAL_RESEARCH_AREAS: ResearchArea[] = [
   {
-    id: 'res-quantum',
+    id: 'res-paleoanthropology',
     code: '01',
-    title: 'QUANTUM LATTICE DYNAMICS',
-    subtitle: 'Correlated Electron States & Topological Transitions in Microstructures',
-    category: 'Condensed Matter Physics',
-    shortDescription: 'Investigating real-time quantum phase transitions and electronic transport in strained 2D van der Waals heterostructures.',
-    longDescription: 'Our team explores non-equilibrium quantum states triggered by ultrafast optical excitation in twisted bilayer systems. By applying localized mechanical tension at sub-nanometer scales, we engineer artificial crystal potentials that host flat bands and correlated electronic phases at room temperature.',
+    title: 'EARLY HOMININ PALEOBIOLOGY',
+    subtitle: 'Morphological Evolution & Pliocene-Pleistocene Fossils in the Afar Rift',
+    category: 'Paleoanthropology & Human Origins',
+    shortDescription: 'Investigating skeletal adaptations, bipedalism biomechanics, and cranial morphology across early hominin fossil assemblages in East Africa.',
+    longDescription: 'Our field research in the Middle Awash and Afar Depression recovers and analyzes fossil hominin remains spanning 6 million to 100,000 years ago. Utilizing high-resolution synchrotron micro-tomography and geometric morphometrics, we trace the evolutionary transitions from Ardipithecus and Australopithecus to early Homo.',
     modelType: 'quantum',
     keyQuestions: [
-      'How does local strain gradient modulate valleytronics in MoS2/WSe2 heterostructures?',
-      'Can non-equilibrium optical pulses induce room-temperature topological superconductivity?',
-      'What are the decoherence dynamics of trapped excitons in moiré superlattices?'
+      'What biomechanical shifts characterize the emergence of committed terrestrial bipedalism?',
+      'How did cranial capacity and encephalization scale with climatic variability in the early Pleistocene?',
+      'What are the taxonomic affinities of recently excavated mid-Pliocene hominin dentitions?'
     ],
-    methodology: 'Combining cryogenic ultra-high vacuum scanning tunneling microscopy (STM) with femtosecond pump-probe optical spectroscopy.',
+    methodology: 'High-resolution micro-CT 3D reconstruction, virtual endocast analysis, and comparative cladistics.',
     stats: [
-      { label: 'Lattice Resolution', value: '0.08 Å' },
-      { label: 'Coherence Time', value: '4.2 μs' },
-      { label: 'Operating Temp', value: '15 mK - 300 K' },
-      { label: 'Laser Pulse Width', value: '12 fs' }
+      { label: 'Chronological Scope', value: '6.0 - 0.1 Ma' },
+      { label: 'Micro-CT Resolution', value: '5.2 μm' },
+      { label: 'Fossil Specimens', value: '450+' },
+      { label: 'Field Sites', value: '18 Basins' }
     ],
-    leadResearcherId: 'person-elena',
+    leadResearcherId: 'person-sewasew',
     relatedPublicationIds: ['pub-01', 'pub-04'],
-    heroImage: 'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&w=1200&q=80'
+    heroImage: '/images/research/fossil-skull.jpg',
+    tags: ['Paleoanthropology', 'Hominin Fossils', 'Afar Rift', 'Bipedalism']
   },
   {
-    id: 'res-microfluidic',
+    id: 'res-lithic',
     code: '02',
-    title: 'MICROFLUIDIC MORPHOGENESIS',
-    subtitle: 'Self-Organizing Soft Matter & Bio-Inspired Cellular Channels',
-    category: 'Biophysical Engineering',
-    shortDescription: 'Developing synthetic cell-mimetic lipid membranes capable of autonomous spatial patterning and fluidic propulsion.',
-    longDescription: 'We synthesize dynamic hydrogel micro-channels that emulate endothelial vessel self-healing. By introducing active colloid motors within viscoelastic fluids, we investigate how mechanical feedback between cell boundaries drives organoid symmetry breaking during early embryo development.',
+    title: 'LITHIC TECHNOLOGY & COGNITION',
+    subtitle: 'Oldowan to Acheulean Transitions & Early Toolmaking Behavioral Dynamics',
+    category: 'Prehistoric African Archaeology',
+    shortDescription: 'Reconstructing the knapping reduction sequences, raw material procurement, and cognitive milestones of the earliest stone toolmakers.',
+    longDescription: 'Stone artifacts provide the most durable behavioral record of hominin cognitive evolution. We perform 3D edge-angle scanning, microwear traceology, and residue analysis on lithic assemblages from Gona, Melka Kunture, and Olduvai Gorge to understand when and how tool-mediated dietary butchery evolved.',
     modelType: 'microfluidic',
     keyQuestions: [
-      'What hydrodynamic laws govern collective shear-stress sensing in synthetic capillaries?',
-      'How can active matter gradients program macroscopic tissue morphogenesis?',
-      'Can bio-mimetic lipid vesicles sustain perpetual non-linear oscillatory transport?'
+      'What mental templates guided the bifacial symmetry of early Acheulean handaxes?',
+      'How did raw material selection (basalt, obsidian, chert) influence flake detachment mechanics?',
+      'Can microscopic bone-surface cutmark patterns differentiate hominin butchery from carnivore gnawing?'
     ],
-    methodology: 'High-speed confocal micro-PIV (Particle Image Velocimetry) and optogenetic spatial illumination.',
+    methodology: 'Experimental flintknapping replication, 3D laser profilometry, and confocal microscopic use-wear analysis.',
     stats: [
-      { label: 'Channel Width', value: '1.5 μm' },
-      { label: 'Flow Velocity', value: '250 μm/s' },
-      { label: 'Viscosity Control', value: '±0.2 cP' },
-      { label: 'Frame Rate', value: '10,000 FPS' }
+      { label: 'Earliest Tools Dated', value: '2.6 Ma' },
+      { label: 'Analyzed Flakes', value: '12,000+' },
+      { label: 'Use-Wear Accuracy', value: '98.4%' },
+      { label: 'Refitted Cores', value: '340 Cores' }
     ],
     leadResearcherId: 'person-marcus',
     relatedPublicationIds: ['pub-02', 'pub-05'],
-    heroImage: 'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=1200&q=80'
+    heroImage: '/images/research/stone-tools.jpg',
+    tags: ['Lithic Analysis', 'Oldowan', 'Acheulean', 'Cognitive Evolution']
   },
   {
-    id: 'res-synaptic',
+    id: 'res-paleoenvironment',
     code: '03',
-    title: 'NEUROMORPHIC DYNAMICS',
-    subtitle: 'Ionic Memristive Computing & Physical Reservoir Hardware',
-    category: 'Computational Neuroscience',
-    shortDescription: 'Constructing sub-nanosecond ionic synaptic devices using halide perovskites for bio-hybrid neural interfaces.',
-    longDescription: 'Conventional von Neumann microprocessors suffer from energy bottlenecks. Our work establishes organic electrochemical transistors (OECTs) that process continuous spiking neural signals directly in biocompatible aqueous environments, enabling real-time neural decoding and ultra-low-power brain-machine interfaces.',
+    title: 'ISOTOPIC PALEOENVIRONMENTS',
+    subtitle: 'Stable Isotopes, Quaternary Paleoclimate & African Savannah Ecosystems',
+    category: 'Paleoclimatology & Biogeochemistry',
+    shortDescription: 'Using carbon and oxygen stable isotopes from fossil tooth enamel and paleosols to map hominin paleoecology and habitat transitions.',
+    longDescription: 'Climate dynamics shaped early human adaptations. By sampling δ13C and δ18O isotopes from mammalian herbivore dentition, pedogenic carbonates, and lacustrine sediment cores, we reconstruct the expansion of C4 grassland biomes and hydrological fluctuations across the East African Rift System.',
     modelType: 'synaptic',
     keyQuestions: [
-      'How does short-term ionic facilitation mimic biological dendritic computation?',
-      'What are the minimum energy limits for single-spike memristive switching?',
-      'Can inorganic memristors achieve long-term potentiation stability exceeding 10^9 cycles?'
+      'How did intense Pleistocene hyper-aridity pulses trigger hominin dispersal and technological innovation?',
+      'What fraction of early hominin diet comprised C4 grasses versus woodland C3 vegetation?',
+      'How did rift basin lake-level fluctuations govern regional resource availability?'
     ],
-    methodology: 'In-situ operando X-ray absorption spectroscopy and multi-channel patch-clamp recording arrays.',
+    methodology: 'Isotope ratio mass spectrometry (IRMS), pedogenic carbonate sampling, and micro-drilled enamel transects.',
     stats: [
-      { label: 'Energy per Spike', value: '0.45 fJ' },
-      { label: 'Synaptic Density', value: '10^9 / cm²' },
-      { label: 'Switching Speed', value: '850 ps' },
-      { label: 'Retention Time', value: '> 10 Years' }
+      { label: 'Isotopic Precision', value: '±0.05‰' },
+      { label: 'Sampled Horizons', value: '95 Strata' },
+      { label: 'Faunal Taxa Sampled', value: '42 Species' },
+      { label: 'Temporal Range', value: '4.5 - 0.5 Ma' }
     ],
     leadResearcherId: 'person-chen',
     relatedPublicationIds: ['pub-03', 'pub-06'],
-    heroImage: 'https://images.unsplash.com/photo-1507413245164-6160d8298b31?auto=format&fit=crop&w=1200&q=80'
+    heroImage: '/images/research/savannah-environment.jpg',
+    tags: ['Paleoenvironment', 'Stable Isotopes', 'Quaternary Science', 'Savannah Biome']
   },
   {
-    id: 'res-metamaterial',
+    id: 'res-geochronology',
     code: '04',
-    title: 'METAMATERIAL WAVEGUIDES',
-    subtitle: 'Non-Reciprocal Photonic Structures & Sub-Wavelength Focusing',
-    category: 'Applied Optics & Materials Science',
-    shortDescription: 'Designing artificial electromagnetic arrays that bend phase fronts to achieve topological light confinement.',
-    longDescription: 'By structuring dielectric ceramics at sub-micron scales, we create photonic metamaterials with near-zero refractive indices. These systems enable loss-free optical wave propagation around sharp structural bends, paving the way for integrated optical computing chips.',
+    title: 'HIGH-PRECISION GEOCHRONOLOGY',
+    subtitle: '40Ar/39Ar Single-Crystal Dating, Tephrochronology & Magnetostratigraphy',
+    category: 'Geochronology & Volcanology',
+    shortDescription: 'Establishing high-precision chronostratigraphic frameworks for hominin-bearing sedimentary sequences in the Main Ethiopian Rift.',
+    longDescription: 'Accurate evolutionary timelines require exact numerical ages. Our lab correlates volcanic ash fallouts (tephras) across sedimentary basins using electron microprobe glass geochemistry and 40Ar/39Ar laser step-heating on single sanidine crystals, delivering millenial-scale resolution for key evolutionary transitions.',
     modelType: 'metamaterial',
     keyQuestions: [
-      'Can non-linear photonic crystal cavities achieve single-photon optical switching?',
-      'How do synthetic gauge fields generate non-reciprocal optical isolation?',
-      'What metamaterial architectures minimize thermal radiation loss in thermophotovoltaics?'
+      'Can cryptotephra finger-printing correlate distant fossiliferous basins across the East African Rift?',
+      'What is the precise numerical boundary between the Middle and Late Pleistocene Acheulean horizons?',
+      'How do paleomagnetic reversals anchor bio-chronological datum levels?'
     ],
-    methodology: 'Finite-Difference Time-Domain (FDTD) electromagnetic simulation combined with electron-beam lithography.',
+    methodology: 'Single-crystal 40Ar/39Ar laser fusion mass spectrometry and electron probe microanalysis (EPMA).',
     stats: [
-      { label: 'Refractive Index', value: 'n = 0.002' },
-      { label: 'Waveguide Loss', value: '< 0.01 dB/cm' },
-      { label: 'Bandwidth', value: '120 THz' },
-      { label: 'Precision', value: '±2 nm' }
+      { label: 'Analytical Precision', value: '±0.15%' },
+      { label: 'Dated Ash Layers', value: '80+ Tephras' },
+      { label: 'Mass Spectrometer', value: 'Argus VI' },
+      { label: 'Age Confidence', value: '2σ' }
     ],
     leadResearcherId: 'person-sarah',
     relatedPublicationIds: ['pub-07'],
-    heroImage: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80'
+    heroImage: '/images/research/geochronology-tuff.jpg',
+    tags: ['Geochronology', '40Ar/39Ar Dating', 'Tephrochronology', 'Stratigraphy']
   }
 ];
 
 export const INITIAL_PUBLICATIONS: Publication[] = [
   {
     id: 'pub-01',
-    title: 'Topological Phase Transitions in Strained MoS2/WSe2 Moiré Heterostructures at Room Temperature',
-    authors: ['Elena Rostova', 'Marcus Vance', 'Chen Wei', 'Sarah Lindqvist'],
-    journal: 'Nature Physics',
+    title: 'Early Pliocene Hominin Mandibular Morphology and Dietary Adaptations in the Middle Awash, Ethiopia',
+    authors: ['Sewasew Haileselassie', 'Marcus Vance', 'Chen Wei', 'Sarah Lindqvist'],
+    journal: 'Nature Paleoanthropology & Evolution',
     year: 2026,
-    doi: '10.1038/s41567-026-04912-x',
+    doi: '10.1038/s41559-026-0312-x',
     pdfUrl: '#',
-    abstract: 'Moiré superlattices in transition metal dichalcogenides provide an adjustable platform for engineering correlated electronic states. Here, we demonstrate room-temperature topological phase switching by applying nanoscale mechanical strain gradients across a MoS2/WSe2 heterobilayer. STM measurements confirm the formation of localized flat bands with a Chern number C = 1, opening new avenues for non-cryogenic quantum devices.',
-    researchAreaId: 'res-quantum',
+    abstract: 'The morphological transition between Ardipithecus and early Australopithecus remains a crucial phase in human origins. Here, we present newly discovered mid-Pliocene mandibular fossils from the Afar Rift dated to 4.1 million years ago. Micro-computed tomography demonstrates thick molar enamel and robust corpus architecture reflecting early dietary divergence toward hard-object foraging in mixed savannah-woodland environments.',
+    researchAreaId: 'res-paleoanthropology',
     featured: true,
-    citationsCount: 42,
-    tags: ['Quantum Materials', '2D Heterostructures', 'Topological Physics', 'Moiré'],
-    bibtex: `@article{Rostova2026Topological,
-  author = {Rostova, Elena and Vance, Marcus and Wei, Chen and Lindqvist, Sarah},
-  title = {Topological Phase Transitions in Strained MoS2/WSe2 Moiré Heterostructures at Room Temperature},
-  journal = {Nature Physics},
-  volume = {22},
-  pages = {145--154},
+    citationsCount: 48,
+    heroImage: '/images/research/fossil-skull.jpg',
+    tags: ['Paleoanthropology', 'Hominin Fossils', 'Middle Awash', 'Australopithecus'],
+    bibtex: `@article{Haileselassie2026Pliocene,
+  author = {Haileselassie, Sewasew and Vance, Marcus and Wei, Chen and Lindqvist, Sarah},
+  title = {Early Pliocene Hominin Mandibular Morphology and Dietary Adaptations in the Middle Awash, Ethiopia},
+  journal = {Nature Paleoanthropology & Evolution},
+  volume = {34},
+  pages = {112--126},
   year = {2026},
-  doi = {10.1038/s41567-026-04912-x}
+  doi = {10.1038/s41559-026-0312-x}
 }`
   },
   {
     id: 'pub-02',
-    title: 'Autonomous Self-Healing in Active Viscoelastic Microchannel Networks',
-    authors: ['Marcus Vance', 'Elena Rostova', 'Aria Tanaka'],
-    journal: 'Science Advances',
+    title: '2.6-Million-Year-Old Flaked Stone Assemblages from Gona and the Origins of Systematic Toolmaking',
+    authors: ['Marcus Vance', 'Sewasew Haileselassie', 'Aria Tanaka'],
+    journal: 'Journal of Human Evolution',
     year: 2026,
-    doi: '10.1126/sciadv.adf8901',
+    doi: '10.1016/j.jhevol.2026.103140',
     pdfUrl: '#',
-    abstract: 'Biological vascular networks rapidly repair structural defects under hydrodynamic stress. We present an active microfluidic hydrogel embedded with catalytic colloidal pumps that sense local pressure drops and deploy self-assembling polymer fibers. Under flow conditions exceeding 300 μm/s, damaged channels fully restore hydraulic conductance within 12 seconds.',
-    researchAreaId: 'res-microfluidic',
+    abstract: 'Systematic stone flaking marks a profound behavioral transition in early hominin evolution. We document an in-situ assemblage of over 850 Oldowan artifacts from stratified sediments at Gona, Ethiopia. High-resolution 3D scar-pattern refitting reveals sophisticated understanding of fracture mechanics and acute flake-angle detachment as early as 2.6 Ma.',
+    researchAreaId: 'res-lithic',
     featured: true,
-    citationsCount: 19,
-    tags: ['Microfluidics', 'Active Matter', 'Soft Robotics', 'Self-Healing'],
-    bibtex: `@article{Vance2026Autonomous,
-  author = {Vance, Marcus and Rostova, Elena and Tanaka, Aria},
-  title = {Autonomous Self-Healing in Active Viscoelastic Microchannel Networks},
-  journal = {Science Advances},
-  volume = {12},
-  pages = {eadf8901},
+    citationsCount: 29,
+    heroImage: '/images/research/stone-tools.jpg',
+    tags: ['Oldowan', 'Lithic Technology', 'Gona', 'Stone Tools'],
+    bibtex: `@article{Vance2026Gona,
+  author = {Vance, Marcus and Haileselassie, Sewasew and Tanaka, Aria},
+  title = {2.6-Million-Year-Old Flaked Stone Assemblages from Gona and the Origins of Systematic Toolmaking},
+  journal = {Journal of Human Evolution},
+  volume = {180},
+  pages = {103140},
   year = {2026},
-  doi = {10.1126/sciadv.adf8901}
+  doi = {10.1016/j.jhevol.2026.103140}
 }`
   },
   {
     id: 'pub-03',
-    title: 'Sub-Femtojoule Synaptic Switching in Halide Perovskite Electrochemical Transistors',
-    authors: ['Chen Wei', 'Klaus Hoffmann', 'Sarah Lindqvist'],
-    journal: 'Nature Electronics',
+    title: 'Enamel Carbon Isotope Transects Document C4 Grassland Exploitation by Early Pleistocene Homo in the Afar Depression',
+    authors: ['Chen Wei', 'Sewasew Haileselassie', 'Sarah Lindqvist'],
+    journal: 'Proceedings of the National Academy of Sciences (PNAS)',
     year: 2025,
-    doi: '10.1038/s41928-025-01104-3',
+    doi: '10.1073/pnas.202504112',
     pdfUrl: '#',
-    abstract: 'Neuromorphic hardware requires physical synapses that match the energy efficiency of mammalian brains (~10 fJ per spike). We report organic-inorganic halide perovskite OECT devices demonstrating non-volatile synaptic potentiation with an energy consumption of 0.45 fJ per pulse at 850 ps switching speeds.',
-    researchAreaId: 'res-synaptic',
+    abstract: 'Stable carbon isotope values (δ13C) from serial enamel dental microsamples track seasonal nutritional plasticity in early Homo erectus/ergaster. Our data from 1.8 Ma strata demonstrate consistent broad-spectrum foraging including C4 graminoids and grazing faunal resources during prolonged arid climatic pulses.',
+    researchAreaId: 'res-paleoenvironment',
     featured: false,
-    citationsCount: 88,
-    tags: ['Neuromorphic', 'Halide Perovskites', 'Memristors', 'Low-Power AI'],
-    bibtex: `@article{Wei2025SubFemtojoule,
-  author = {Wei, Chen and Hoffmann, Klaus and Lindqvist, Sarah},
-  title = {Sub-Femtojoule Synaptic Switching in Halide Perovskite Electrochemical Transistors},
-  journal = {Nature Electronics},
-  volume = {8},
-  pages = {312--321},
+    citationsCount: 76,
+    heroImage: '/images/research/savannah-environment.jpg',
+    tags: ['Stable Isotopes', 'Homo erectus', 'Paleoecology', 'East Africa'],
+    bibtex: `@article{Wei2025EnamelIsotopes,
+  author = {Wei, Chen and Haileselassie, Sewasew and Lindqvist, Sarah},
+  title = {Enamel Carbon Isotope Transects Document C4 Grassland Exploitation by Early Pleistocene Homo in the Afar Depression},
+  journal = {PNAS},
+  volume = {122},
+  pages = {e202504112},
   year = {2025},
-  doi = {10.1038/s41928-025-01104-3}
+  doi = {10.1073/pnas.202504112}
 }`
   },
   {
     id: 'pub-04',
-    title: 'Ultrafast Excitonic Decoherence Dynamics in Moiré Quantum Wells',
-    authors: ['Elena Rostova', 'Chen Wei'],
-    journal: 'Physical Review Letters',
+    title: 'High-Precision 40Ar/39Ar Tephrostratigraphy of the Hadar and Dikika Formations, Ethiopia',
+    authors: ['Sarah Lindqvist', 'Sewasew Haileselassie'],
+    journal: 'Earth and Planetary Science Letters',
     year: 2025,
-    doi: '10.1103/PhysRevLett.134.186401',
+    doi: '10.1016/j.epsl.2025.118901',
     pdfUrl: '#',
-    abstract: 'We map the temporal evolution of valley-polarized excitons trapped in moiré potentials using four-wave mixing spectroscopy at 15 mK. Dephasing rates scale non-linearly with excitation density due to acoustic phonon scattering.',
-    researchAreaId: 'res-quantum',
+    abstract: 'Single-crystal laser fusion 40Ar/39Ar dating on feldspar grains from 14 volcanic tuff marker beds establishes an absolute chronological resolution of ±12,000 years for the Australopithecus afarensis fossil sequence in the northern Afar rift basin.',
+    researchAreaId: 'res-geochronology',
     featured: false,
-    citationsCount: 34,
-    tags: ['Excitons', 'Spectroscopy', 'Quantum Coherence'],
-    bibtex: `@article{Rostova2025Ultrafast,
-  author = {Rostova, Elena and Wei, Chen},
-  title = {Ultrafast Excitonic Decoherence Dynamics in Moiré Quantum Wells},
-  journal = {Physical Review Letters},
-  volume = {134},
-  pages = {186401},
+    citationsCount: 38,
+    heroImage: '/images/research/geochronology-tuff.jpg',
+    tags: ['Geochronology', 'Argon Dating', 'Hadar', 'Tephrochronology'],
+    bibtex: `@article{Lindqvist2025Tephra,
+  author = {Lindqvist, Sarah and Haileselassie, Sewasew},
+  title = {High-Precision 40Ar/39Ar Tephrostratigraphy of the Hadar and Dikika Formations, Ethiopia},
+  journal = {Earth and Planetary Science Letters},
+  volume = {620},
+  pages = {118901},
   year = {2025},
-  doi = {10.1103/PhysRevLett.134.186401}
+  doi = {10.1016/j.epsl.2025.118901}
 }`
   },
   {
     id: 'pub-05',
-    title: 'Symmetry Breaking in Synthetic Lipid Membranes via Active Hydrodynamic Shear',
+    title: 'Microscopic Use-Wear and Residue Evidence for Early Pleistocene Woodworking with Acheulean Cleavers',
     authors: ['Marcus Vance', 'Aria Tanaka'],
-    journal: 'Biophysical Journal',
+    journal: 'Journal of Archaeological Science',
     year: 2025,
-    doi: '10.1016/j.bpj.2025.04.012',
+    doi: '10.1016/j.jas.2025.105988',
     pdfUrl: '#',
-    abstract: 'Spatial patterning during early morphogenesis relies on mechanical feedback between fluid forces and membrane bending. We measure lipid phase separation under controlled microchannel shear stress.',
-    researchAreaId: 'res-microfluidic',
+    abstract: 'Confocal laser scanning microscopy of Large Cutting Tools (LCTs) from 1.4 Ma archaeological levels at Melka Kunture demonstrates diagnostic polish and plant phytolith residues corresponding to purposeful heavy-duty wood modification.',
+    researchAreaId: 'res-lithic',
     featured: false,
-    citationsCount: 27,
-    tags: ['Biophysics', 'Lipid Bilayers', 'Morphogenesis'],
-    bibtex: `@article{Vance2025Symmetry,
+    citationsCount: 21,
+    heroImage: '/images/research/stone-tools.jpg',
+    tags: ['Use-Wear', 'Acheulean', 'Microscopy', 'Experimental Archaeology'],
+    bibtex: `@article{Vance2025Woodworking,
   author = {Vance, Marcus and Tanaka, Aria},
-  title = {Symmetry Breaking in Synthetic Lipid Membranes via Active Hydrodynamic Shear},
-  journal = {Biophysical Journal},
-  volume = {128},
-  pages = {890--902},
+  title = {Microscopic Use-Wear and Residue Evidence for Early Pleistocene Woodworking with Acheulean Cleavers},
+  journal = {Journal of Archaeological Science},
+  volume = {155},
+  pages = {105988},
   year = {2025},
-  doi = {10.1016/j.bpj.2025.04.012}
+  doi = {10.1016/j.jas.2025.105988}
 }`
   },
   {
     id: 'pub-06',
-    title: 'Bio-Hybrid Neural Interfaces for In-Vivo Synaptic Spike Decoding',
-    authors: ['Chen Wei', 'Marcus Vance', 'Elena Rostova'],
-    journal: 'IEEE Transactions on Biomedical Engineering',
+    title: 'Quaternary Fluvial Dynamics and Basin Hydrology in the Main Ethiopian Rift: Implications for Human Dispersals',
+    authors: ['Chen Wei', 'Marcus Vance', 'Sewasew Haileselassie'],
+    journal: 'Quaternary Science Reviews',
     year: 2024,
-    doi: '10.1109/TBME.2024.3389012',
+    doi: '10.1016/j.quascirev.2024.108502',
     pdfUrl: '#',
-    abstract: 'Direct integration of organic ionic OECT arrays with neural tissue achieves continuous spike discrimination with >99.4% accuracy at sub-milliwatt power draw.',
-    researchAreaId: 'res-synaptic',
+    abstract: 'Geomorphological mapping and optically stimulated luminescence (OSL) dating of paleolake terraces in the Ziway-Shala basin reveal episodic mega-lake phases that created hospitable riparian corridors for Middle Stone Age human dispersals across East Africa.',
+    researchAreaId: 'res-paleoenvironment',
     featured: false,
-    citationsCount: 112,
-    tags: ['Neural Interfaces', 'Bioelectronics', 'Brain Machine Interface'],
-    bibtex: `@article{Wei2024BioHybrid,
-  author = {Wei, Chen and Vance, Marcus and Rostova, Elena},
-  title = {Bio-Hybrid Neural Interfaces for In-Vivo Synaptic Spike Decoding},
-  journal = {IEEE Transactions on Biomedical Engineering},
-  volume = {71},
-  pages = {1450--1461},
+    citationsCount: 94,
+    heroImage: '/images/research/savannah-environment.jpg',
+    tags: ['Quaternary', 'Hydrology', 'Human Dispersal', 'East Africa'],
+    bibtex: `@article{Wei2024QuaternaryFluvial,
+  author = {Wei, Chen and Vance, Marcus and Haileselassie, Sewasew},
+  title = {Quaternary Fluvial Dynamics and Basin Hydrology in the Main Ethiopian Rift: Implications for Human Dispersals},
+  journal = {Quaternary Science Reviews},
+  volume = {330},
+  pages = {108502},
   year = {2024},
-  doi = {10.1109/TBME.2024.3389012}
+  doi = {10.1016/j.quascirev.2024.108502}
 }`
   },
   {
     id: 'pub-07',
-    title: 'Zero-Index Photonic Metamaterials for Low-Loss Integrated Light Routing',
-    authors: ['Sarah Lindqvist', 'Klaus Hoffmann'],
-    journal: 'Optica',
+    title: '3D Virtual Forensic Endocast Reconstruction of Pleistocene Hominin Crania',
+    authors: ['Sarah Lindqvist', 'Dr. Klaus Hoffmann', 'Sewasew Haileselassie'],
+    journal: 'American Journal of Biological Anthropology',
     year: 2024,
-    doi: '10.1364/OPTICA.11.000412',
+    doi: '10.1002/ajpa.24901',
     pdfUrl: '#',
-    abstract: 'Dielectric arrays engineered for zero refractive index allow optical waves to traverse complex waveguide bends without phase variation or backscattering loss.',
-    researchAreaId: 'res-metamaterial',
+    abstract: 'Digital segmentation of intracranial endocasts from complete fossil calvaria reveals frontal lobe sulcal morphology and hemispheric petalia patterns indicative of complex Broca-region specialization in late Middle Pleistocene African hominins.',
+    researchAreaId: 'res-paleoanthropology',
     featured: false,
-    citationsCount: 65,
-    tags: ['Metamaterials', 'Photonics', 'Optics'],
-    bibtex: `@article{Lindqvist2024ZeroIndex,
-  author = {Lindqvist, Sarah and Hoffmann, Klaus},
-  title = {Zero-Index Photonic Metamaterials for Low-Loss Integrated Light Routing},
-  journal = {Optica},
-  volume = {11},
-  pages = {412--420},
+    citationsCount: 52,
+    heroImage: '/images/news/micro-ct-lab.jpg',
+    tags: ['Endocast', 'Brain Evolution', 'Micro-CT', 'Biological Anthropology'],
+    bibtex: `@article{Lindqvist2024Endocast,
+  author = {Lindqvist, Sarah and Hoffmann, Klaus and Haileselassie, Sewasew},
+  title = {3D Virtual Forensic Endocast Reconstruction of Pleistocene Hominin Crania},
+  journal = {American Journal of Biological Anthropology},
+  volume = {183},
+  pages = {412--428},
   year = {2024},
-  doi = {10.1364/OPTICA.11.000412}
+  doi = {10.1002/ajpa.24901}
 }`
   }
 ];
@@ -270,179 +281,183 @@ export const INITIAL_PUBLICATIONS: Publication[] = [
 export const INITIAL_PEOPLE: Person[] = [
   {
     id: 'person-sewasew',
-    name: 'Dr. Sewasew',
+    name: 'Dr. Sewasew Haileselassie',
     role: 'PI',
     positionTitle: 'Principal Investigator & Director of UC Berkeley Lab',
-    bio: 'Dr. Sewasew leads the Living Research Laboratory with a focus on non-equilibrium quantum dynamics, moiré heterostructures, bio-fluidics, and neuromorphic synaptic hardware.',
+    bio: 'Dr. Sewasew Haileselassie leads the African Archaeology, History & Human Evolution Laboratory with over two decades of field excavations and research across the East African Rift, Middle Awash, and Afar basins.',
     avatar: '/images/dr-sewasew.jpg',
     email: 'sewasew@lbl.gov',
     office: 'UC Berkeley Lab, 1 Cyclotron Rd, Room 412',
     scholarUrl: 'https://scholar.google.com',
     orcidUrl: 'https://orcid.org/0000-0002-1825-0097',
-    researchAreaIds: ['res-quantum', 'res-synaptic', 'res-microfluidic']
+    researchAreaIds: ['res-paleoanthropology', 'res-lithic', 'res-paleoenvironment']
   },
   {
     id: 'person-marcus',
     name: 'Dr. Marcus Vance',
     role: 'Postdoc',
-    positionTitle: 'Senior Postdoctoral Fellow in Bio-Fluidics',
-    bio: 'Marcus specializes in self-assembling active hydrogels and microfluidic PIV tracking. He completed his Ph.D. at ETH Zürich.',
+    positionTitle: 'Senior Postdoctoral Fellow in Prehistoric Lithic Analysis',
+    bio: 'Marcus specializes in early Pleistocene Oldowan technology, 3D knapping modeling, and microscopic use-wear traceology. He received his Ph.D. from Cambridge University.',
     avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80',
     email: 'm.vance@nexus-lab.org',
-    office: 'Bio-Engineering Annex, Room 204',
+    office: 'Archaeology Research Annex, Room 204',
     scholarUrl: 'https://scholar.google.com',
     orcidUrl: 'https://orcid.org/0000-0001-9234-5678',
-    researchAreaIds: ['res-microfluidic']
+    researchAreaIds: ['res-lithic']
   },
   {
     id: 'person-chen',
     name: 'Dr. Chen Wei',
     role: 'Postdoc',
-    positionTitle: 'Research Fellow in Neuromorphic Devices',
-    bio: 'Chen designs ultra-fast ionic OECT devices and organic halide perovskite synapses. Formerly at Cambridge Cavendish Laboratory.',
+    positionTitle: 'Research Fellow in Isotope Biogeochemistry',
+    bio: 'Chen investigates stable isotope ratios (δ13C and δ18O) in mammalian tooth enamel and fossil soils to reconstruct African Pliocene-Pleistocene vegetation and hydrological regimes.',
     avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80',
     email: 'c.wei@nexus-lab.org',
-    office: 'Nano-Fabrication Center, Lab B',
+    office: 'Biogeochemistry Wing, Lab 3',
     scholarUrl: 'https://scholar.google.com',
     orcidUrl: 'https://orcid.org/0000-0003-4567-8901',
-    researchAreaIds: ['res-synaptic', 'res-quantum']
+    researchAreaIds: ['res-paleoenvironment']
   },
   {
     id: 'person-sarah',
     name: 'Sarah Lindqvist',
     role: 'PhD',
-    positionTitle: 'Ph.D. Candidate in Metamaterial Optics',
-    bio: 'Sarah focuses on sub-wavelength photonic metamaterials and zero-index waveguides for optical computing.',
+    positionTitle: 'Ph.D. Candidate in Geochronology & Volcanology',
+    bio: 'Sarah focuses on single-crystal 40Ar/39Ar tephrochronology and laser fusion mass spectrometry to calibrate early hominin sedimentary sequences.',
     avatar: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=600&q=80',
     email: 's.lindqvist@nexus-lab.org',
-    office: 'Optics Research Wing, Desk 12',
+    office: 'Geochronology Suite, Desk 12',
     scholarUrl: 'https://scholar.google.com',
-    researchAreaIds: ['res-metamaterial']
+    researchAreaIds: ['res-geochronology']
   },
   {
     id: 'person-aria',
     name: 'Aria Tanaka',
     role: 'PhD',
-    positionTitle: 'Ph.D. Candidate in Biophysical Modeling',
-    bio: 'Aria develops mathematical continuum mechanics models for active cellular membranes and synthetic morphogen gradients.',
+    positionTitle: 'Ph.D. Candidate in 3D Fossil Forensics & Morphometrics',
+    bio: 'Aria develops high-resolution geometric morphometric algorithms and virtual cranial reconstructions of early African hominin specimens.',
     avatar: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=600&q=80',
     email: 'a.tanaka@nexus-lab.org',
-    office: 'Theory & Computation Suite, Room 301',
-    researchAreaIds: ['res-microfluidic']
+    office: 'Computational Paleo-Morphology, Room 301',
+    researchAreaIds: ['res-paleoanthropology']
   },
   {
     id: 'person-klaus',
     name: 'Dr. Klaus Hoffmann',
     role: 'Alumni',
-    positionTitle: 'Now Assistant Professor at MIT',
-    bio: 'Klaus was a postdoctoral associate in NEXUS Lab from 2022-2025, pioneering zero-index dielectric photonics.',
+    positionTitle: 'Assistant Professor of Anthropology, Harvard University',
+    bio: 'Klaus was a postdoctoral fellow in the Sewasew Laboratory from 2021-2024, researching Pleistocene Acheulean stone tool technology and raw material landscape mobility.',
     avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=600&q=80',
-    email: 'k.hoffmann@mit.edu',
+    email: 'k.hoffmann@harvard.edu',
     office: 'Cambridge, MA',
     scholarUrl: 'https://scholar.google.com',
-    researchAreaIds: ['res-metamaterial', 'res-synaptic']
+    researchAreaIds: ['res-lithic', 'res-paleoanthropology']
   }
 ];
 
 export const INITIAL_ARTICLES: Article[] = [
   {
     id: 'art-01',
-    title: 'Room-Temperature Moiré Superlattices: From Theory to Cleanroom Realization',
-    summary: 'How localized mechanical strain gradients allowed our team to bypass cryogenic helium cooling and achieve correlated electronic states at 295 Kelvin.',
-    category: 'Lab Discovery',
-    author: 'Prof. Elena Rostova',
+    title: 'Fossil Hominin Mandible from the Afar Rift Reveals Key Dietary Transitions at 4.1 Million Years',
+    summary: 'How field excavations in the Ethiopian Rift Valley recovered cranial elements documenting early hominin bipedalism and masticatory adaptations.',
+    category: 'Field Discovery',
+    author: 'Dr. Sewasew Haileselassie',
     date: 'August 14, 2026',
     readTime: '6 min read',
     featured: true,
-    heroImage: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80',
-    figureCaption: 'FIG 03 — Atomic force microscopy topographical sweep of the strained MoS2 heterojunction.',
+    heroImage: '/images/news/excavation-trench.jpg',
+    figureCaption: 'FIG 01 — Stratigraphic exposure at the Middle Awash excavation horizon.',
     content: [
-      'For decades, condensed matter physics faced a stubborn obstacle: quantum phase transitions in twisted bilayer materials required ultra-low temperatures, often within fractions of a kelvin from absolute zero. This reliance on bulky liquid helium cryostats confined quantum electronic devices to laboratory basements.',
-      'Our team at NEXUS Lab took a fundamentally different approach. Instead of relying solely on twist angle manipulation, we introduced localized nano-indenter strain arrays directly into the supporting sapphire substrate. By creating controlled 0.3% lattice stretch gradients across 20-nanometer domains, the effective electronic bandwidth collapses into isolated flat bands even at room temperature.',
-      'The implications for solid-state technology are profound. Quantum valleytronic switches that operate without refrigeration could reduce the energy footprint of future computing clusters by orders of magnitude.'
-    ]
+      'The geological record of the East African Rift offers an unparalleled window into human evolutionary history. For over two decades, our research team has mapped continuous fossiliferous exposures across the Afar Depression, where ancient volcanic ashes cap fossil-bearing lake sediments.',
+      'Our latest field campaign recovered a well-preserved hominin hemimandible in association with extinct faunal assemblages. Micro-CT scans demonstrate thick enamel caps on molar teeth, suggesting early Australopithecus exploited tough, abrasive fibrous vegetation as savannah woodlands expanded.',
+      'These findings refine the evolutionary divergence timing between ancestral hominins and provide critical benchmark calibration for late Neogene evolutionary chronologies.'
+    ],
+    tags: ['Field Excavation', 'Afar Rift', 'Australopithecus', 'Hominin Origins']
   },
   {
     id: 'art-02',
-    title: 'Biocompatible Synaptic Memristors in Aqueous Neural Tissue Environments',
-    summary: 'Exploring how organic electrochemical transistors process ionic nerve impulses directly inside physiological saline solutions.',
-    category: 'Biophysics Insight',
-    author: 'Dr. Chen Wei',
+    title: 'Reconstructing the World of 2.6-Million-Year-Old Stone Toolmakers at Gona',
+    summary: 'Microscopic use-wear and 3D flake refitting demonstrate intentional technological design in the world\'s oldest archaeological sites.',
+    category: 'Archaeological Insight',
+    author: 'Dr. Marcus Vance',
     date: 'July 28, 2026',
     readTime: '8 min read',
     featured: false,
-    heroImage: 'https://images.unsplash.com/photo-1507413245164-6160d8298b31?auto=format&fit=crop&w=1200&q=80',
-    figureCaption: 'FIG 01 — Cross-sectional schematic of the halide perovskite OECT channel.',
+    heroImage: '/images/research/stone-tools.jpg',
+    figureCaption: 'FIG 02 — 3D laser scan of an Oldowan basalt unifacial core from Gona.',
     content: [
-      'Silicon microchips speak the language of electrons; human biological tissue speaks the language of ions (sodium, potassium, calcium). Transducing signal between these two domains traditionally requires power-hungry analog-to-digital converters.',
-      'By synthesizing soft halide perovskite channels modulated by organic electrolytes, we engineered a device where ionic currents directly alter electrical conductance in a non-volatile manner. The resulting synaptic response mimics biological short-term facilitation with less than 0.5 femtojoules of energy per pulse.'
-    ]
+      'The emergence of flaked stone tools represents a pivotal cognitive leap in hominin behavioral evolution. By intentionally knapping sharp-edged stone flakes, early hominins gained unprecedented access to high-calorie animal carcasses.',
+      'Our experimental flintknapping and microscopic edge-wear analyses prove that Gona toolmakers possessed sophisticated spatial awareness and sensorimotor precision, striking raw pebbles at precise angles below 80 degrees to yield long, durable slicing flakes.'
+    ],
+    tags: ['Stone Tools', 'Oldowan', 'Gona', 'Prehistory']
   },
   {
     id: 'art-03',
-    title: 'Inside the Cryogenic Ultra-High Vacuum Scanning Tunneling Facility',
-    summary: 'A photo-essay behind the scenes of our sub-angstrom microscopy suite operating at 15 millikelvin.',
+    title: 'Inside the Berkeley High-Resolution Micro-CT Fossil Forensics Laboratory',
+    summary: 'A behind-the-scenes look at how non-destructive X-ray microtomography digitally unwraps fossil skulls without physical extraction.',
     category: 'Behind the Science',
     author: 'Sarah Lindqvist',
     date: 'June 10, 2026',
     readTime: '4 min read',
     featured: false,
-    heroImage: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1200&q=80',
-    figureCaption: 'FIG 04 — The 4-ton vibration isolation pedestal suspended on active air springs.',
+    heroImage: '/images/news/micro-ct-lab.jpg',
+    figureCaption: 'FIG 03 — 3D virtual cranial endocast showing cerebral sulci and vascular impressions.',
     content: [
-      'Imaging individual electron wavefunctions requires absolute stillness. Even the sound of a voice or a passing truck two miles away can vibrate a microscopic probe tip enough to smear an atomic image.',
-      'Our ultra-high vacuum chamber sits on a 400-millimeter-thick concrete slab physically decoupled from the rest of the building. Inside, liquid helium circulates in closed loops to chill samples to 15 mK while maintaining a pressure of 10^-11 mbar.'
-    ]
+      'Rare hominin fossil bones are irreplaceable cultural and scientific treasures that cannot be cut or physically sampled. Modern paleoanthropology relies on non-destructive X-ray micro-computed tomography (micro-CT).',
+      'By scanning fossil specimens with beam resolutions under 10 microns, our lab creates 3D virtual models of internal bone structures, dental growth lines (perikymata), and cranial endocasts, allowing global researchers to study digital fossils in extraordinary forensic detail.'
+    ],
+    tags: ['Micro-CT', 'Forensics', 'Digital Fossils', 'Lab Technology']
   }
 ];
 
 export const INITIAL_LAB_IMAGES: LabImage[] = [
   {
-    id: 'img-stm-suite',
-    title: '15 mK Dilution Refrigerator & STM Suite',
-    category: 'Equipments',
-    imageUrl: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1000&q=80',
-    description: 'Ultra-low-temperature scanning tunneling microscope chamber suspended on active acoustic dampers.',
+    id: 'img-field-excavation',
+    title: 'Stratigraphic Excavation in the Afar Rift, Ethiopia',
+    category: 'Field Expeditions',
+    imageUrl: '/images/news/excavation-trench.jpg',
+    description: 'Field research team carefully sieving sedimentary horizons for early hominin micro-vertebrate remains in the Afar Depression.',
     exif: {
-      camera: 'Leica SL2 Monochrom',
-      wavelength: 'UHV 10^-11 mbar',
-      date: '2026-05-12'
+      camera: 'Leica SL2',
+      wavelength: 'Afar Depression, Ethiopia',
+      date: '2026-02-14'
     }
   },
   {
-    id: 'img-microchannel',
-    title: 'Self-Organizing Hydrogel Microchannel Array',
-    category: 'Microscopy',
-    imageUrl: 'https://images.unsplash.com/photo-1576086213369-97a306d36557?auto=format&fit=crop&w=1000&q=80',
-    description: 'Fluorescence confocal micro-graph of fluorescently tagged colloidal particles flowing through synthetic lipid channels.',
+    id: 'img-micro-ct',
+    title: 'High-Resolution Micro-CT Fossil Reconstruction',
+    category: 'Laboratory Forensics',
+    imageUrl: '/images/news/micro-ct-lab.jpg',
+    description: '3D micro-tomography volumetric scan of fossil molar dentition showing enamel-dentine junction (EDJ) architecture.',
     exif: {
-      camera: 'Nikon Ti2-E Confocal',
-      magnification: '100x Oil Immersion',
-      wavelength: '488 nm / 561 nm',
-      date: '2026-06-04'
+      camera: 'Bruker SkyScan 1273',
+      magnification: '5.2 μm Voxel Size',
+      wavelength: '130 kV / 300 μA',
+      date: '2026-04-09'
     }
   },
   {
-    id: 'img-cleanroom',
-    title: 'Nano-Fabrication Cleanroom Suite (ISO Class 5)',
-    category: 'Experiments',
-    imageUrl: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1000&q=80',
-    description: 'Researcher preparing 2D heterostructure flake transfers under yellow monochromatic safelight.',
-    exif: {
-      camera: 'Hasselblad X2D 100C',
-      date: '2026-04-19'
-    }
-  },
-  {
-    id: 'img-laser-bench',
-    title: 'Femtosecond Pump-Probe Optical Spectroscopy Bench',
-    category: 'Equipments',
-    imageUrl: 'https://images.unsplash.com/photo-1507413245164-6160d8298b31?auto=format&fit=crop&w=1000&q=80',
-    description: '12-femtosecond Ti:Sapphire mode-locked laser optics configured for transient absorption sweeps.',
+    id: 'img-lithic-knapping',
+    title: 'Experimental Knapping & Lithic Reduction Laboratory',
+    category: 'Archaeology Lab',
+    imageUrl: '/images/research/stone-tools.jpg',
+    description: 'Experimental replication of Acheulean bifacial handaxe reduction sequences using East African rift volcanics.',
     exif: {
       camera: 'Sony A7R V',
-      wavelength: '800 nm Fundamental',
-      date: '2026-07-02'
+      wavelength: 'Basalt & Obsidian',
+      date: '2026-05-20'
+    }
+  },
+  {
+    id: 'img-mass-spec',
+    title: '40Ar/39Ar Laser Geochronology Mass Spectrometry Bench',
+    category: 'Equipments',
+    imageUrl: '/images/research/geochronology-tuff.jpg',
+    description: 'Thermo Scientific Argus VI noble gas mass spectrometer dating single sanidine crystals from volcanic ash layers.',
+    exif: {
+      camera: 'Nikon Z8',
+      wavelength: 'CO2 Laser Step-Heating',
+      date: '2026-06-11'
     }
   }
 ];
@@ -450,29 +465,29 @@ export const INITIAL_LAB_IMAGES: LabImage[] = [
 export const INITIAL_OPEN_POSITIONS: OpenPosition[] = [
   {
     id: 'pos-01',
-    title: 'Postdoctoral Fellow in Moiré Quantum Materials',
+    title: 'Postdoctoral Fellow in Paleoanthropology & 3D Fossil Morphometrics',
     type: 'Postdoc',
-    department: 'Department of Physics & Condensed Matter',
-    deadline: 'October 31, 2026',
-    description: 'Seeking an outstanding experimental physicist with experience in cryogenic STM, van der Waals flake stacking, or ultrafast optics to lead our room-temperature topological heterostructure program.',
+    department: 'Department of Anthropology & Living Research Lab',
+    deadline: 'November 15, 2026',
+    description: 'Seeking an outstanding biological anthropologist with expertise in micro-CT image processing, geometric morphometrics, and hominin fossil anatomy to participate in East African field research.',
     requirements: [
-      'Ph.D. in Physics, Materials Science, or Nanotechnology',
-      'Demonstrated expertise in cryogenic ultra-high vacuum systems',
-      'Strong publication record in top-tier peer-reviewed journals',
-      'Experience with Python/MATLAB scientific data modeling'
+      'Ph.D. in Biological Anthropology, Paleoanthropology, or Evolutionary Biology',
+      'Demonstrated expertise with 3D volume rendering and geometric morphometrics (Avizo, R, 3D Slicer)',
+      'Proven record of peer-reviewed publications in international journals',
+      'Willingness to participate in multi-week field expeditions in Ethiopia'
     ]
   },
   {
     id: 'pos-02',
-    title: 'Ph.D. Candidate in Active Microfluidic Biophysics',
+    title: 'Ph.D. Candidate in Prehistoric African Lithic Archaeology',
     type: 'PhD Candidate',
-    department: 'School of Bio-Engineering & Complex Systems',
-    deadline: 'December 15, 2026',
-    description: 'Fully funded 4-year doctoral candidacy focusing on bio-mimetic lipid membranes and dynamic colloidal self-assembly.',
+    department: 'Graduate Program in African Archaeology & Human Evolution',
+    deadline: 'December 20, 2026',
+    description: 'Fully funded 4-year doctoral fellowship focusing on Early to Middle Stone Age technological evolution, microscopic use-wear traceology, and experimental flintknapping.',
     requirements: [
-      'B.S. or M.S. in Biophysics, Mechanical Engineering, or Chemistry',
-      'Background in microfluidics, soft matter physics, or microscopy',
-      'Passion for interdisciplinary biological physics research'
+      'B.A. or M.A./M.Sc. in Archaeology, Anthropology, or Earth Sciences',
+      'Background in stone tool analysis, spatial GIS mapping, or microscope traceology',
+      'Strong passion for African prehistoric heritage and collaborative field research'
     ]
   }
 ];
