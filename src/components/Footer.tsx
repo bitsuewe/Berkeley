@@ -28,20 +28,20 @@ export const Footer: React.FC = () => {
           <div className="lg:col-span-4 space-y-4">
             <div
               onClick={() => handleNav('home')}
-              className="flex items-center gap-3 cursor-pointer group"
+              className="flex items-center gap-3.5 cursor-pointer group select-none"
             >
-              <BerkeleyLabLogo variant="reverse" showTagline={false} size="sm" />
+              <BerkeleyLabLogo variant="reverse" showTagline={false} showLogotype={false} size="sm" />
               <div className="flex flex-col border-l border-white/20 pl-3">
-                <span className="font-heading font-extrabold text-sm text-white tracking-tight uppercase leading-none group-hover:text-[#77d5dc] transition-colors">
+                <span className="font-heading font-extrabold text-sm sm:text-base text-white tracking-tight uppercase leading-none group-hover:text-[#77d5dc] transition-colors">
                   SEWASEW HAILESELASSIE
                 </span>
-                <span className="text-[10px] text-white/60 mt-1">
+                <span className="text-[10px] sm:text-[11px] text-white/60 mt-1 leading-tight">
                   African Archaeology, History &amp; Human Evolution
                 </span>
               </div>
             </div>
             <p className="text-white/60 text-xs leading-relaxed max-w-sm font-light">
-              Advancing research at the intersection of African archaeology, history, and human evolution.
+              Advancing groundbreaking research at the intersection of African archaeology, history, and human evolution.
             </p>
           </div>
 

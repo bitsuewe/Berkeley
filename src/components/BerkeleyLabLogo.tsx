@@ -3,6 +3,7 @@ import React from 'react';
 interface BerkeleyLabLogoProps {
   variant?: 'default' | 'reverse' | 'positive';
   showTagline?: boolean;
+  showLogotype?: boolean;
   className?: string;
   size?: 'sm' | 'md' | 'lg';
 }
@@ -10,6 +11,7 @@ interface BerkeleyLabLogoProps {
 export const BerkeleyLabLogo: React.FC<BerkeleyLabLogoProps> = ({
   variant = 'reverse',
   showTagline = true,
+  showLogotype = true,
   className = '',
   size = 'md',
 }) => {
@@ -75,22 +77,24 @@ export const BerkeleyLabLogo: React.FC<BerkeleyLabLogoProps> = ({
         </svg>
 
         {/* Logotype & Tagline */}
-        <div className="flex flex-col justify-center ml-2.5">
-          <div
-            className="font-heading font-black tracking-tight uppercase leading-none"
-            style={{ color: textColor, fontSize: size === 'sm' ? '1rem' : size === 'lg' ? '1.5rem' : '1.25rem' }}
-          >
-            BERKELEY LAB
-          </div>
-          {showTagline && (
+        {showLogotype && (
+          <div className="flex flex-col justify-center ml-2.5">
             <div
-              className="font-mono text-[9px] sm:text-[10px] font-bold tracking-wider uppercase mt-1 opacity-90"
-              style={{ color: isReverse ? '#77d5dc' : '#007681' }}
+              className="font-heading font-black tracking-tight uppercase leading-none"
+              style={{ color: textColor, fontSize: size === 'sm' ? '1rem' : size === 'lg' ? '1.5rem' : '1.25rem' }}
             >
-              Bringing Science Solutions to the World
+              BERKELEY LAB
             </div>
-          )}
-        </div>
+            {showTagline && (
+              <div
+                className="font-mono text-[9px] sm:text-[10px] font-bold tracking-wider uppercase mt-1 opacity-90"
+                style={{ color: isReverse ? '#77d5dc' : '#007681' }}
+              >
+                Bringing Science Solutions to the World
+              </div>
+            )}
+          </div>
+        )}
       </div>
     </div>
   );

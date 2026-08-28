@@ -77,7 +77,7 @@ export const Navbar: React.FC = () => {
         >
           {/* Berkeley Lab Logo: Restored on tablet and desktop (md+) screens */}
           <div className="hidden sm:flex items-center shrink-0">
-            <BerkeleyLabLogo variant="default" showTagline={false} size="sm" />
+            <BerkeleyLabLogo variant="default" showTagline={false} showLogotype={false} size="sm" />
           </div>
 
           {/* Typography + Restored Always-Visible Tagline/Motto */}
