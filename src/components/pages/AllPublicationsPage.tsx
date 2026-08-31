@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { ArrowLeft, Search, BookOpen, Download, ExternalLink, Filter, Calendar } from 'lucide-react';
+import { ArrowLeft, Search, BookOpen, Download, ExternalLink, Calendar } from 'lucide-react';
 import { useCms } from '../../context/CmsContext';
 import type { Publication } from '../../types/lab';
 

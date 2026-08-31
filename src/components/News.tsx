@@ -4,33 +4,13 @@ import { useCms } from '../context/CmsContext';
 
 export const News: React.FC = () => {
   const { articles, setSelectedArticle, setCurrentView } = useCms();
-
-  const newsItems = [
-    {
-      category: 'FIELD EXPEDITION',
-      title: 'New Pliocene hominin fossil assemblage unearthed in the Afar Depression, Ethiopia',
-      date: 'May 18, 2026',
-      img: '/images/news/excavation-trench.jpg',
-    },
-    {
-      category: 'PUBLICATION',
-      title: 'Study dating early Acheulean stone tools published in Nature Geosciences',
-      date: 'April 29, 2026',
-      img: '/images/research/stone-tools.jpg',
-    },
-    {
-      category: 'SYMPOSIUM',
-      title: 'Pan-African Prehistory & Paleoanthropology Congress announced',
-      date: 'April 10, 2026',
-      img: '/images/news/micro-ct-lab.jpg',
-    },
-  ];
+  const displayArticles = articles.slice(0, 3);
 
   return (
     <section id="news" className="py-20 sm:py-24 bg-[#FAF8F5] text-[#00232e] border-b border-[#e3e8e9] select-none">
       <div className="max-w-[1280px] w-[92%] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
 
-        {/* Left Column (1/3 width / 4 cols) matching screenshot */}
+        {/* Left Column (1/3 width / 4 cols) */}
         <div className="lg:col-span-4 space-y-6">
           <div className="text-[11px] font-mono font-bold uppercase tracking-widest text-[#007681]">
             NEWS
@@ -54,23 +34,19 @@ export const News: React.FC = () => {
           </div>
         </div>
 
-        {/* Right Column (2/3 width / 8 cols) - 3 News Cards Grid matching screenshot */}
+        {/* Right Column (2/3 width / 8 cols) - 3 News Cards Grid */}
         <div className="lg:col-span-8 grid grid-cols-1 md:grid-cols-3 gap-6">
-          {newsItems.map((item, idx) => (
+          {displayArticles.map((art) => (
             <div
-              key={idx}
-              onClick={() => {
-                if (articles.length > 0) {
-                  setSelectedArticle(articles[idx % articles.length]);
-                }
-              }}
+              key={art.id}
+              onClick={() => setSelectedArticle(art)}
               className="bg-white rounded-xl border border-slate-200 hover:border-[#007681] shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden flex flex-col justify-between cursor-pointer group"
             >
               {/* Thumbnail */}
               <div className="h-40 overflow-hidden bg-slate-100 relative">
                 <img
-                  src={item.img}
-                  alt={item.title}
+                  src={art.heroImage || '/images/news/excavation-trench.jpg'}
+                  alt={art.title}
                   loading="lazy"
                   decoding="async"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
@@ -81,15 +57,15 @@ export const News: React.FC = () => {
               <div className="p-5 space-y-3 flex-1 flex flex-col justify-between">
                 <div className="space-y-2">
                   <div className="text-[10px] font-mono font-bold text-[#007681] uppercase tracking-wider">
-                    {item.category}
+                    {art.category}
                   </div>
                   <h3 className="font-heading font-extrabold text-sm text-[#00232e] group-hover:text-[#007681] transition-colors leading-snug line-clamp-3">
-                    {item.title}
+                    {art.title}
                   </h3>
                 </div>
 
                 <div className="pt-3 border-t border-slate-100 text-[11px] font-mono text-slate-500">
-                  {item.date}
+                  {art.date}
                 </div>
               </div>
 

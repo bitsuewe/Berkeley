@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useCms } from '../../context/CmsContext';
 import { useSound } from '../../context/SoundContext';
 import type { AccentTheme } from '../../types/lab';
-import { X, Settings, Plus, Trash2, BookOpen, Download, Palette, Users } from 'lucide-react';
+import { X, Settings, Plus, Trash2 } from 'lucide-react';
 import { MagneticButton } from '../ui/MagneticButton';
 
 export const AdminCmsModal: React.FC = () => {
@@ -14,12 +14,10 @@ export const AdminCmsModal: React.FC = () => {
     publications,
     addPublication,
     deletePublication,
-    people,
-    setBibtexImportOpen,
   } = useCms();
   const { playClick } = useSound();
 
-  const [activeTab, setActiveTab] = useState<'theme' | 'publications' | 'people'>('publications');
+  const [activeTab, setActiveTab] = useState<'theme' | 'publications'>('publications');
 
   // Form state
   const [newTitle, setNewTitle] = useState('');
@@ -39,11 +37,11 @@ export const AdminCmsModal: React.FC = () => {
       authors: newAuthors.split(',').map(a => a.trim()),
       journal: newJournal,
       year: Number(newYear),
-      doi: newDoi || `10.1038/nexus-${Date.now()}`,
-      abstract: 'Abstract summary added via CMS Terminal.',
-      researchAreaId: 'res-quantum',
+      doi: newDoi || `10.1038/sewasew-${Date.now()}`,
+      abstract: 'Abstract summary added via CMS Control Panel.',
+      researchAreaId: 'res-paleoanthropology',
       citationsCount: 0,
-      bibtex: `@article{nexus${Date.now()},\n  title={${newTitle}},\n  journal={${newJournal}},\n  year={${newYear}}\n}`,
+      bibtex: `@article{sewasew${Date.now()},\n  title={${newTitle}},\n  journal={${newJournal}},\n  year={${newYear}}\n}`,
       tags: ['Admin Published']
     });
     setNewTitle('');
@@ -74,7 +72,7 @@ export const AdminCmsModal: React.FC = () => {
         <div className="p-6 border-b border-[#E8E4DD] flex items-center justify-between bg-[#FAF8F5]">
           <div className="flex items-center gap-2 font-mono text-xs text-[var(--color-accent)] font-bold uppercase">
             <Settings className="w-4 h-4" />
-            <span>NEXUS TERMINAL CONTROL PANEL</span>
+            <span>SEWASEW LAB CMS CONTROL PANEL</span>
           </div>
           <button
             onClick={() => { setAdminOpen(false); playClick(); }}
@@ -120,7 +118,7 @@ export const AdminCmsModal: React.FC = () => {
                   placeholder="Paper Title *"
                   className="w-full p-2 bg-white border border-[#E8E4DD] rounded-xl text-[#1A1A1A]"
                 />
-                <div className="grid grid-cols-2 gap-2">
+                <div className="grid grid-cols-3 gap-2">
                   <input
                     type="text"
                     required
@@ -135,6 +133,14 @@ export const AdminCmsModal: React.FC = () => {
                     value={newJournal}
                     onChange={e => setNewJournal(e.target.value)}
                     placeholder="Journal Name *"
+                    className="w-full p-2 bg-white border border-[#E8E4DD] rounded-xl text-[#1A1A1A]"
+                  />
+                  <input
+                    type="number"
+                    required
+                    value={newYear}
+                    onChange={e => setNewYear(Number(e.target.value))}
+                    placeholder="Year *"
                     className="w-full p-2 bg-white border border-[#E8E4DD] rounded-xl text-[#1A1A1A]"
                   />
                 </div>

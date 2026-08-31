@@ -1,4 +1,4 @@
-import type { ResearchArea, Publication, Article, Person, LabImage, OpenPosition } from '../types/lab';
+import type { ResearchArea, Publication, Article, Person, LabImage, OpenPosition, Course, OutreachItem } from '../types/lab';
 
 export const INITIAL_RESEARCH_AREAS: ResearchArea[] = [
   {
@@ -491,3 +491,156 @@ export const INITIAL_OPEN_POSITIONS: OpenPosition[] = [
     ]
   }
 ];
+
+export const INITIAL_COURSES: Course[] = [
+  {
+    id: 'anthro-120a',
+    code: 'ANTHRO 120A',
+    title: 'African Prehistory & Human Origins',
+    credits: '4 Credits',
+    level: 'Undergraduate',
+    term: 'Fall Semesters',
+    location: 'Hearst Anthropology Building',
+    description: 'A comprehensive survey of hominin biological and cultural evolution across Africa from the late Miocene to the emergence of modern humans, integrating fossil anatomy, behavioral ecology, and paleoclimate.',
+    prerequisites: 'Introduction to Archaeology or Biological Anthropology (or instructor approval)',
+    grading: 'Midterm Exam (25%), Term Research Paper (30%), Fossil Lab Practicums (25%), Final Exam (20%)',
+    modules: [
+      { week: 'Week 1-2', topic: 'Geological Framework & Late Miocene Ape Radiations', readings: 'White et al. (2009) Ardipithecus; WoldeGabriel et al. (2001)', practicum: '3D virtual examination of Miocene hominoid dentition' },
+      { week: 'Week 3-4', topic: 'Australopithecus anamensis & afarensis in East Africa', readings: 'Haile-Selassie et al. (2019) Anamensis cranium; Johanson & White (1979)', practicum: 'Postcranial metrics and bipedal biomechanics lab' },
+      { week: 'Week 5-6', topic: 'The Earliest Toolmakers: Dikika, Lomekwi & Oldowan', readings: 'Semaw et al. (2003) Gona stone tools; Harmand et al. (2015)', practicum: 'Flake morphology and core reduction experimental analysis' },
+      { week: 'Week 7-8', topic: 'Emergence of Homo & Acheulean Technology', readings: 'Antón et al. (2014) Evolution of early Homo; Lepre et al. (2011)', practicum: 'Handaxe symmetry 3D geometric morphometrics' },
+      { week: 'Week 9-10', topic: 'Mid-Pleistocene Transitions & Archaic Homo sapiens', readings: 'Stringer (2016); Hublin et al. (2017) Jebel Irhoud origins', practicum: 'Cranial endocast reconstruction and brain size scaling' },
+      { week: 'Week 11-12', topic: 'Middle Stone Age (MSA) Innovation & Modern Behavior', readings: 'McBrearty & Brooks (2000) Revolution that wasn\'t; Henshilwood (2002)', practicum: 'Pigment analysis and symbolic bead microwear traceology' },
+      { week: 'Week 13-15', topic: 'African Diaspora, Late Pleistocene Foragers & Field Synthesis', readings: 'Scerri et al. (2018) Pan-African evolution; Dr. Sewasew publications', practicum: 'Final fossil identification & stratigraphic correlation' }
+    ]
+  },
+  {
+    id: 'arch-215',
+    code: 'ARCH 215',
+    title: 'Advanced Lithic Analysis & Traceology',
+    credits: 'Graduate Seminar',
+    level: 'Graduate',
+    term: 'Spring Semesters',
+    location: 'Lithic Technology & Micro-CT Lab',
+    description: 'Hands-on laboratory seminar covering 3D scanning, confocal microscopy use-wear analysis, experimental flintknapping, and organic residue characterization on ancient stone tools.',
+    prerequisites: 'Graduate standing in Anthropology, Archaeology, or Earth Science',
+    grading: 'Laboratory Research Project (40%), Experimental Knapping Log (30%), Seminar Discussion & Reviews (30%)',
+    modules: [
+      { week: 'Week 1-3', topic: 'Raw Material Petrology & Fracture Mechanics', readings: 'Inizan et al. (1999); Cotterell & Kamminga (1987)', practicum: 'Petrographic thin-section analysis of basalt, chert, and obsidian' },
+      { week: 'Week 4-6', topic: 'Experimental Flintknapping & Chaîne Opératoire', readings: 'Pelegrin (2005); Toth (1985) Oldowan stone technologies', practicum: 'Controlled bifacial knapping with soft and hard hammer percussors' },
+      { week: 'Week 7-9', topic: 'High-Power Optical & Confocal Micro-Wear Traceology', readings: 'Keeley (1980); Rots et al. (2016) Residue contamination protocols', practicum: 'Microscopic imaging of bone, hide, wood, and tuber polish' },
+      { week: 'Week 10-12', topic: '3D Surface Metrology & Micro-CT Volumetrics', readings: 'Lin et al. (2018); Grosman et al. (2014) Computerized artifact analysis', practicum: '3D structured-light surface scanning and edge sharpness quantification' },
+      { week: 'Week 13-15', topic: 'Independent Lab Projects & Publication Preparation', readings: 'Peer-reviewed methodologies from recent Nature & JHE papers', practicum: 'Presentation of laboratory micro-wear research findings' }
+    ]
+  },
+  {
+    id: 'geo-185',
+    code: 'GEO/ANTH 185',
+    title: 'Quaternary Geochronology & Biogeochemistry',
+    credits: '3 Credits',
+    level: 'Undergraduate',
+    term: 'Spring Semesters',
+    location: 'Berkeley Lab / McCone Hall',
+    description: 'Radiometric dating methodologies (40Ar/39Ar laser fusion, luminescence) and stable isotope paleoenvironmental reconstruction (δ13C, δ18O) in the East African Rift.',
+    prerequisites: 'Chemistry 1A and Earth Science 101 or equivalent',
+    grading: 'Lab Practicum Reports (35%), Midterm (25%), Research Proposal (25%), Final Presentation (15%)',
+    modules: [
+      { week: 'Week 1-3', topic: 'Geochronology Principles & 40Ar/39Ar Mass Spectrometry', readings: 'McDougall & Harrison (1999); Renne et al. (2010)', practicum: 'Mass spectrometry calibration and laser step-heating data reduction' },
+      { week: 'Week 4-6', topic: 'Tephrostratigraphy & Volcanic Glass Fingerprinting', readings: 'Sarna-Wojcicki et al. (2000); Brown et al. (2006)', practicum: 'Electron microprobe analysis of volcanic glass shards' },
+      { week: 'Week 7-9', topic: 'Stable Carbon & Oxygen Isotopes in Pedogenic Carbonates', readings: 'Cerling et al. (2011) Woody cover in East Africa; Levin (2015)', practicum: 'Isotope ratio mass spectrometer (IRMS) carbonate preparation' },
+      { week: 'Week 10-12', topic: 'Paleoecology, Fossil Enamel & Biomarker Lipids', readings: 'Sponheimer et al. (2013); Uno et al. (2016)', practicum: 'Leaf wax n-alkane chromatography interpretation' },
+      { week: 'Week 13-15', topic: 'Integrated Chronostratigraphic Modeling of the Rift', readings: 'Selected Afar stratigraphic papers', practicum: 'Bayesian age-depth modeling with Bacon and OxCal' }
+    ]
+  },
+  {
+    id: 'field-199',
+    code: 'FIELD 199',
+    title: 'East African Rift Field Excavation School',
+    credits: 'Summer Field School',
+    level: 'Field School',
+    term: 'Summer Terms (6 Weeks)',
+    location: 'Afar Depression, Ethiopia',
+    description: '6-week intensive field archaeological training in the Afar Depression, Ethiopia. Stratigraphic recording, fossil collection, total station mapping, and community heritage collaboration.',
+    prerequisites: 'Application and interview; field physical clearance',
+    grading: 'Field Notebook & Stratigraphic Column (35%), Excavation Technique (35%), Field Final Exam (30%)',
+    modules: [
+      { week: 'Week 1', topic: 'Camp Orientation, Paleotopography & GPS Survey', readings: 'Afar Regional Geology Field Manual', practicum: 'Establishment of base datum and pedestrian survey grid transects' },
+      { week: 'Week 2-3', topic: 'Controlled Micro-Stratigraphic Excavation & Taphonomy', readings: 'Behrensmeyer (1978) Taphonomic and ecologic information', practicum: '1m x 1m trench excavation with 3D coordinate point plotting' },
+      { week: 'Week 4', topic: 'Fossil Conservation, Consolidation & Jacketing', readings: 'Rixon (1976) Fossil undertaking in the field', practicum: 'Plaster jacket construction on fragile hominin & mammalian fossils' },
+      { week: 'Week 5', topic: 'Volcanic Ash Bed Sampling & Paleosol Profiling', readings: 'Stratigraphic Field Standards', practicum: 'Sampling unweathered tephra for Berkeley Lab argon dating' },
+      { week: 'Week 6', topic: 'Field Cataloging, ARCCH Curation & Community Symposium', readings: 'Heritage Stewardship Guidelines', practicum: 'Final site preservation and presentation to local stakeholders' }
+    ]
+  }
+];
+
+export const INITIAL_OUTREACH: OutreachItem[] = [
+  {
+    id: 'pan-african',
+    title: 'Pan-African Prehistory & Heritage Collaboration',
+    tag: 'PAN-AFRICAN INITIATIVE',
+    category: 'Pan-African',
+    img: '/images/news/excavation-trench.jpg',
+    summary: 'Collaborative research training and technical capacity building for African scholars, curators, and field archaeologists in partnership with ARCCH and African universities.',
+    stat: '14+ African Fellows Trained',
+    lead: 'Dr. Sewasew Haileselassie & ARCCH Directorate',
+    objectives: [
+      'Empower African early-career researchers with cutting-edge digital paleoanthropology methods',
+      'Provide fully-funded graduate research fellowships at UC Berkeley and partner labs',
+      'Establish sustainable, African-led curation standards for fossil hominin collections'
+    ],
+    impactDetails: 'Through annual workshops in Addis Ababa and Berkeley, our lab bridges the gap between field discovery and laboratory science. Fellows receive hands-on training in high-precision geochronology, 3D micro-CT scanning, and open-access publishing.',
+    partners: ['Authority for Research & Conservation of Cultural Heritage (ARCCH)', 'Addis Ababa University', 'National Museum of Ethiopia', 'University of Nairobi']
+  },
+  {
+    id: 'virtual-fossil-lab',
+    title: 'Virtual Fossil Lab & Open 3D Repository',
+    tag: 'OPEN SCIENCE & 3D ARCHIVES',
+    category: 'Open Science',
+    img: '/images/research/fossil-skull.jpg',
+    summary: 'Providing free open-access 3D surface meshes and micro-CT volume reconstructions of prehistoric lithics and comparative fossil casts for global classrooms.',
+    stat: '500+ Digital Models Available',
+    lead: 'Digital Forensics & Morphometrics Team',
+    objectives: [
+      'Democratize access to African fossil hominin and archaeological discoveries worldwide',
+      'Provide interactive 3D WebGL viewers and printable STL files for schools and universities',
+      'Preserve high-resolution digital master copies of fragile prehistoric specimens'
+    ],
+    impactDetails: 'Our open repository has served over 45,000 educators and researchers in 80+ countries. Students can rotate, slice, and measure fossil crania and Oldowan stone tools right in their web browsers or 3D print them in their school science labs.',
+    partners: ['African Digital Heritage Network', 'Global Morphometrics Consortium', 'MorphoSource 3D Repository']
+  },
+  {
+    id: 'k12-workshops',
+    title: '\'Roots of Humanity\' Public School Workshops',
+    tag: 'K-12 YOUTH ENGAGEMENT',
+    category: 'K-12 Engagement',
+    img: '/images/research/stone-tools.jpg',
+    summary: 'Interactive hands-on science sessions with fossil replicas, microscopic traceology demonstrations, and flintknapping science for Bay Area middle and high schools.',
+    stat: '2,400+ Students Reached Annually',
+    lead: 'Lab Outreach Coordinators & PhD Mentors',
+    objectives: [
+      'Inspire underrepresented K-12 students to pursue careers in Earth science and anthropology',
+      'Deliver hands-on STEM curriculum featuring real scientific methodologies',
+      'Host interactive campus visits to Berkeley archaeological and scanning laboratories'
+    ],
+    impactDetails: 'Each semester, our PhD students and postdocs visit public school classrooms with research-grade cast kits and digital microscopes. Students extract simulated micro-fossils, analyze tool marks, and discover the scientific evidence for human origins in Africa.',
+    partners: ['Bay Area Science Festival', 'Oakland & Berkeley Unified School Districts', 'Lawrence Hall of Science']
+  },
+  {
+    id: 'community-stewardship',
+    title: 'Afar Community Heritage & Site Conservation',
+    tag: 'COMMUNITY STEWARDSHIP',
+    category: 'Community Stewardship',
+    img: '/images/research/savannah-environment.jpg',
+    summary: 'Working directly with local pastoralist communities across the Afar Rift in archaeological site protection, local guide training, and sustainable cultural heritage stewardship.',
+    stat: '100% Community-Led Field Protection',
+    lead: 'Afar Regional Stakeholder Coalition',
+    objectives: [
+      'Involve local pastoralist communities as co-stewards of primary fossil-bearing strata',
+      'Provide emergency clean water and educational resources to remote Afar field settlements',
+      'Protect vulnerable Pleistocene paleontological localities from illegal disturbance'
+    ],
+    impactDetails: 'Local community members are the primary guardians of the fossil-bearing sediments in the Afar Depression. Our team collaborates with community elders to foster conservation, provide field employment, and support local village infrastructure.',
+    partners: ['Afar Regional Cultural Bureau', 'Mille District Community Council', 'Gona Heritage Association']
+  }
+];
+

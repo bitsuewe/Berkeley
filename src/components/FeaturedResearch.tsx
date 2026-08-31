@@ -68,7 +68,7 @@ export const FeaturedResearch: React.FC = () => {
                     {pub.title}
                   </h3>
                   <div className="text-white/60 text-xs font-light line-clamp-1 pt-1">
-                    {pub.authors}
+                    {pub.authors.join(', ')}
                   </div>
                 </div>
 

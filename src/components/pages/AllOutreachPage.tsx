@@ -1,94 +1,10 @@
 import React, { useState, useMemo } from 'react';
-import { ArrowLeft, Search, Globe, Award, BookOpen, Users, CheckCircle, ChevronRight, Filter } from 'lucide-react';
+import { ArrowLeft, Search, Globe, CheckCircle, ChevronRight, Filter } from 'lucide-react';
 import { useCms } from '../../context/CmsContext';
-
-interface OutreachItem {
-  id: string;
-  title: string;
-  tag: string;
-  category: string;
-  img: string;
-  summary: string;
-  stat: string;
-  lead: string;
-  objectives: string[];
-  impactDetails: string;
-  partners: string[];
-}
-
-const OUTREACH_DATA: OutreachItem[] = [
-  {
-    id: 'pan-african',
-    title: 'Pan-African Prehistory & Heritage Collaboration',
-    tag: 'PAN-AFRICAN INITIATIVE',
-    category: 'Pan-African',
-    img: '/images/news/excavation-trench.jpg',
-    summary: 'Collaborative research training and technical capacity building for African scholars, curators, and field archaeologists in partnership with ARCCH and African universities.',
-    stat: '14+ African Fellows Trained',
-    lead: 'Dr. Sewasew Haileselassie & ARCCH Directorate',
-    objectives: [
-      'Empower African early-career researchers with cutting-edge digital paleoanthropology methods',
-      'Provide fully-funded graduate research fellowships at UC Berkeley and partner labs',
-      'Establish sustainable, African-led curation standards for fossil hominin collections'
-    ],
-    impactDetails: 'Through annual workshops in Addis Ababa and Berkeley, our lab bridges the gap between field discovery and laboratory science. Fellows receive hands-on training in high-precision geochronology, 3D micro-CT scanning, and open-access publishing.',
-    partners: ['Authority for Research & Conservation of Cultural Heritage (ARCCH)', 'Addis Ababa University', 'National Museum of Ethiopia', 'University of Nairobi']
-  },
-  {
-    id: 'virtual-fossil-lab',
-    title: 'Virtual Fossil Lab & Open 3D Repository',
-    tag: 'OPEN SCIENCE & 3D ARCHIVES',
-    category: 'Open Science',
-    img: '/images/research/fossil-skull.jpg',
-    summary: 'Providing free open-access 3D surface meshes and micro-CT volume reconstructions of prehistoric lithics and comparative fossil casts for global classrooms.',
-    stat: '500+ Digital Models Available',
-    lead: 'Digital Forensics & Morphometrics Team',
-    objectives: [
-      'Democratize access to African fossil hominin and archaeological discoveries worldwide',
-      'Provide interactive 3D WebGL viewers and printable STL files for schools and universities',
-      'Preserve high-resolution digital master copies of fragile prehistoric specimens'
-    ],
-    impactDetails: 'Our open repository has served over 45,000 educators and researchers in 80+ countries. Students can rotate, slice, and measure fossil crania and Oldowan stone tools right in their web browsers or 3D print them in their school science labs.',
-    partners: ['African Digital Heritage Network', 'Global Morphometrics Consortium', 'MorphoSource 3D Repository']
-  },
-  {
-    id: 'k12-workshops',
-    title: '\'Roots of Humanity\' Public School Workshops',
-    tag: 'K-12 YOUTH ENGAGEMENT',
-    category: 'K-12 Engagement',
-    img: '/images/research/stone-tools.jpg',
-    summary: 'Interactive hands-on science sessions with fossil replicas, microscopic traceology demonstrations, and flintknapping science for Bay Area middle and high schools.',
-    stat: '2,400+ Students Reached Annually',
-    lead: 'Lab Outreach Coordinators & PhD Mentors',
-    objectives: [
-      'Inspire underrepresented K-12 students to pursue careers in Earth science and anthropology',
-      'Deliver hands-on STEM curriculum featuring real scientific methodologies',
-      'Host interactive campus visits to Berkeley archaeological and scanning laboratories'
-    ],
-    impactDetails: 'Each semester, our PhD students and postdocs visit public school classrooms with research-grade cast kits and digital microscopes. Students extract simulated micro-fossils, analyze tool marks, and discover the scientific evidence for human origins in Africa.',
-    partners: ['Bay Area Science Festival', 'Oakland & Berkeley Unified School Districts', 'Lawrence Hall of Science']
-  },
-  {
-    id: 'community-stewardship',
-    title: 'Afar Community Heritage & Site Conservation',
-    tag: 'COMMUNITY STEWARDSHIP',
-    category: 'Community Stewardship',
-    img: '/images/research/savannah-environment.jpg',
-    summary: 'Working directly with local pastoralist communities across the Afar Rift in archaeological site protection, local guide training, and sustainable cultural heritage stewardship.',
-    stat: '100% Community-Led Field Protection',
-    lead: 'Afar Regional Stakeholder Coalition',
-    objectives: [
-      'Involve local pastoralist communities as co-stewards of primary fossil-bearing strata',
-      'Provide emergency clean water and educational resources to remote Afar field settlements',
-      'Protect vulnerable Pleistocene paleontological localities from illegal disturbance'
-    ],
-    impactDetails: 'Local community members are the primary guardians of the fossil-bearing sediments in the Afar Depression. Our team collaborates with community elders to foster conservation, provide field employment, and support local village infrastructure.',
-    partners: ['Afar Regional Cultural Bureau', 'Mille District Community Council', 'Gona Heritage Association']
-  }
-];
+import type { OutreachItem } from '../../types/lab';
 
 export const AllOutreachPage: React.FC = () => {
-  const { setCurrentView } = useCms();
+  const { outreach, setCurrentView } = useCms();
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [selectedItem, setSelectedItem] = useState<OutreachItem | null>(null);
@@ -97,7 +13,7 @@ export const AllOutreachPage: React.FC = () => {
 
   const filteredItems = useMemo(() => {
     const q = searchQuery.trim().toLowerCase();
-    return OUTREACH_DATA.filter((item) => {
+    return (outreach || []).filter((item) => {
       const matchesSearch =
         !q ||
         item.title.toLowerCase().includes(q) ||
@@ -110,7 +26,7 @@ export const AllOutreachPage: React.FC = () => {
 
       return matchesSearch && matchesCat;
     });
-  }, [searchQuery, selectedCategory]);
+  }, [outreach, searchQuery, selectedCategory]);
 
   return (
     <div className="min-h-screen bg-[#FAF8F5] text-[#00232e] py-12 select-none animate-in fade-in duration-300">
@@ -134,7 +50,7 @@ export const AllOutreachPage: React.FC = () => {
           </button>
 
           <div className="text-xs font-mono text-slate-500 font-medium">
-            {selectedItem ? selectedItem.tag : `Showing ${filteredItems.length} of ${OUTREACH_DATA.length} Outreach Initiatives`}
+            {selectedItem ? selectedItem.tag : `Showing ${filteredItems.length} of ${(outreach || []).length} Outreach Initiatives`}
           </div>
         </div>
 

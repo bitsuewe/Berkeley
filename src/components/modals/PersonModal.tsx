@@ -1,7 +1,7 @@
 import React from 'react';
 import { useCms } from '../../context/CmsContext';
 import { useSound } from '../../context/SoundContext';
-import { X, ExternalLink, User } from 'lucide-react';
+import { X, User } from 'lucide-react';
 
 export const PersonModal: React.FC = () => {
   const { selectedPerson, setSelectedPerson, publications, setSelectedPublication } = useCms();

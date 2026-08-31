@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import type { ResearchArea, Publication, Article, Person, LabImage, OpenPosition, AccentTheme } from '../types/lab';
-import { INITIAL_RESEARCH_AREAS, INITIAL_PUBLICATIONS, INITIAL_PEOPLE, INITIAL_ARTICLES, INITIAL_LAB_IMAGES, INITIAL_OPEN_POSITIONS } from '../data/initialData';
+import type { ResearchArea, Publication, Article, Person, LabImage, OpenPosition, Course, OutreachItem, AccentTheme } from '../types/lab';
+import { INITIAL_RESEARCH_AREAS, INITIAL_PUBLICATIONS, INITIAL_PEOPLE, INITIAL_ARTICLES, INITIAL_LAB_IMAGES, INITIAL_OPEN_POSITIONS, INITIAL_COURSES, INITIAL_OUTREACH } from '../data/initialData';
 
 export type AppView = 'home' | 'all-research' | 'all-publications' | 'all-news' | 'all-people' | 'all-courses' | 'all-outreach';
 
@@ -14,6 +14,8 @@ interface CmsContextType {
   publications: Publication[];
   people: Person[];
   articles: Article[];
+  courses: Course[];
+  outreach: OutreachItem[];
   labImages: LabImage[];
   openPositions: OpenPosition[];
   accentTheme: AccentTheme;
@@ -75,14 +77,54 @@ const ACCENT_COLORS: Record<AccentTheme, { main: string; hover: string; light: s
   },
 };
 
+const VIEW_TO_HASH: Record<AppView, string> = {
+  'home': '#home',
+  'all-research': '#research',
+  'all-publications': '#publications',
+  'all-news': '#news',
+  'all-people': '#people',
+  'all-courses': '#courses',
+  'all-outreach': '#outreach',
+};
+
+const HASH_TO_VIEW: Record<string, AppView> = {
+  '': 'home',
+  '#': 'home',
+  '#home': 'home',
+  '#about': 'home',
+  '#contact': 'home',
+  '#featured-research': 'home',
+  '#research': 'all-research',
+  '#all-research': 'all-research',
+  '#publications': 'all-publications',
+  '#all-publications': 'all-publications',
+  '#news': 'all-news',
+  '#all-news': 'all-news',
+  '#people': 'all-people',
+  '#all-people': 'all-people',
+  '#courses': 'all-courses',
+  '#all-courses': 'all-courses',
+  '#outreach': 'all-outreach',
+  '#all-outreach': 'all-outreach',
+};
+
 export const CmsProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [currentView, setCurrentView] = useState<AppView>('home');
+  const [currentView, setCurrentViewState] = useState<AppView>(() => {
+    if (typeof window !== 'undefined') {
+      const initialHash = window.location.hash.toLowerCase();
+      return HASH_TO_VIEW[initialHash] || 'home';
+    }
+    return 'home';
+  });
+
   const [searchModalOpen, setSearchModalOpen] = useState<boolean>(false);
 
   const [researchAreas] = useState<ResearchArea[]>(INITIAL_RESEARCH_AREAS);
   const [publications, setPublications] = useState<Publication[]>(INITIAL_PUBLICATIONS);
   const [people, setPeople] = useState<Person[]>(INITIAL_PEOPLE);
   const [articles] = useState<Article[]>(INITIAL_ARTICLES);
+  const [courses] = useState<Course[]>(INITIAL_COURSES);
+  const [outreach] = useState<OutreachItem[]>(INITIAL_OUTREACH);
   const [labImages] = useState<LabImage[]>(INITIAL_LAB_IMAGES);
   const [openPositions] = useState<OpenPosition[]>(INITIAL_OPEN_POSITIONS);
   
@@ -94,6 +136,53 @@ export const CmsProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   const [selectedPerson, setSelectedPerson] = useState<Person | null>(null);
   const [selectedArticle, setSelectedArticle] = useState<Article | null>(null);
   const [bibtexImportOpen, setBibtexImportOpen] = useState<boolean>(false);
+
+  // Sync currentView with browser history pushState
+  const setCurrentView = (view: AppView) => {
+    if (typeof window !== 'undefined') {
+      if (view !== currentView) {
+        window.history.pushState({ view }, '', VIEW_TO_HASH[view] || '#home');
+        setCurrentViewState(view);
+      }
+    } else {
+      setCurrentViewState(view);
+    }
+  };
+
+  // Listen to browser Back/Forward navigation
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    // Set initial history state
+    const currentHash = window.location.hash.toLowerCase();
+    const initialView = HASH_TO_VIEW[currentHash] || 'home';
+    window.history.replaceState({ view: initialView }, '', window.location.hash || '#home');
+
+    const handlePopState = (event: PopStateEvent) => {
+      const stateView = event.state?.view as AppView | undefined;
+      const hash = window.location.hash.toLowerCase();
+      const targetView = stateView || HASH_TO_VIEW[hash] || 'home';
+
+      // Close any open modals when navigating via browser history
+      setSelectedResearchArea(null);
+      setSelectedPublication(null);
+      setSelectedPerson(null);
+      setSelectedArticle(null);
+      setSearchModalOpen(false);
+      setBibtexImportOpen(false);
+      setAdminOpen(false);
+
+      setCurrentViewState(targetView);
+    };
+
+    window.addEventListener('popstate', handlePopState);
+    window.addEventListener('hashchange', handlePopState);
+
+    return () => {
+      window.removeEventListener('popstate', handlePopState);
+      window.removeEventListener('hashchange', handlePopState);
+    };
+  }, []);
 
   useEffect(() => {
     const root = document.documentElement;
@@ -133,20 +222,20 @@ export const CmsProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     entries.forEach((entry, idx) => {
       if (!entry.trim()) return;
 
-      const titleMatch = entry.match(/title\s*=\s*[\{"]([^\}"]+)[\}"]/i);
-      const authorMatch = entry.match(/author\s*=\s*[\{"]([^\}"]+)[\}"]/i);
-      const journalMatch = entry.match(/(?:journal|booktitle)\s*=\s*[\{"]([^\}"]+)[\}"]/i);
-      const yearMatch = entry.match(/year\s*=\s*[\{"]?(\d{4})[\}"]?/i);
-      const doiMatch = entry.match(/doi\s*=\s*[\{"]([^\}"]+)[\}"]/i);
-      const abstractMatch = entry.match(/abstract\s*=\s*[\{"]([^\}"]+)[\}"]/i);
+      const titleMatch = entry.match(/title\s*=\s*[{"]([^}"]+)[}"]/i);
+      const authorMatch = entry.match(/author\s*=\s*[{"]([^}"]+)[}"]/i);
+      const journalMatch = entry.match(/(?:journal|booktitle)\s*=\s*[{"]([^}"]+)[}"]/i);
+      const yearMatch = entry.match(/year\s*=\s*[{"]?(\d{4})[}"]?/i);
+      const doiMatch = entry.match(/doi\s*=\s*[{"]([^}"]+)[}"]/i);
+      const abstractMatch = entry.match(/abstract\s*=\s*[{"]([^}"]+)[}"]/i);
 
       if (titleMatch && titleMatch[1]) {
         const title = titleMatch[1].replace(/\s+/g, ' ').trim();
-        const rawAuthors = authorMatch ? authorMatch[1] : 'NEXUS Lab Researcher';
+        const rawAuthors = authorMatch ? authorMatch[1] : 'Sewasew Lab Researcher';
         const authors = rawAuthors.split(/\s+and\s+/i).map(a => a.trim());
         const journal = journalMatch ? journalMatch[1].trim() : 'Scientific Publication';
         const year = yearMatch ? parseInt(yearMatch[1], 10) : new Date().getFullYear();
-        const doi = doiMatch ? doiMatch[1].trim() : `10.1038/nexus-${Date.now()}-${idx}`;
+        const doi = doiMatch ? doiMatch[1].trim() : `10.1038/sewasew-${Date.now()}-${idx}`;
         const abstract = abstractMatch ? abstractMatch[1].trim() : 'No abstract provided in BibTeX record.';
 
         newPubs.push({
@@ -158,7 +247,7 @@ export const CmsProvider: React.FC<{ children: React.ReactNode }> = ({ children 
           doi,
           pdfUrl: '#',
           abstract,
-          researchAreaId: 'res-quantum',
+          researchAreaId: 'res-paleoanthropology',
           featured: false,
           citationsCount: Math.floor(Math.random() * 15),
           bibtex: `@article{${authors[0]?.split(' ').pop() || 'Pub'}${year},\n  title={${title}},\n  author={${rawAuthors}},\n  journal={${journal}},\n  year={${year}}\n}`,
@@ -185,6 +274,8 @@ export const CmsProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       publications,
       people,
       articles,
+      courses,
+      outreach,
       labImages,
       openPositions,
       accentTheme,

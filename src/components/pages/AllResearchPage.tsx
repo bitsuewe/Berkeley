@@ -74,7 +74,7 @@ export const AllResearchPage: React.FC = () => {
             Comprehensive Research Portfolio
           </h1>
           <p className="text-slate-600 text-base sm:text-lg leading-relaxed font-light">
-            Explore our multidisciplinary investigations across quantum lattice physics, autonomous bio-fluidics, neuromorphic computing, and metamaterials led by Dr. Sewasew.
+            Explore our multidisciplinary investigations across hominin paleobiology, prehistoric lithic technology, Quaternary biogeochemistry, and high-precision geochronology led by Dr. Sewasew.
           </p>
         </div>
 
@@ -140,7 +140,7 @@ export const AllResearchPage: React.FC = () => {
                     {area.title}
                   </h3>
                   <p className="text-slate-600 text-xs sm:text-sm leading-relaxed font-light line-clamp-3">
-                    {area.shortDescription || area.description}
+                    {area.shortDescription || area.longDescription}
                   </p>
                 </div>
 
@@ -151,7 +151,7 @@ export const AllResearchPage: React.FC = () => {
                   </div>
 
                   <span className="text-[11px] font-mono text-slate-400">
-                    {area.leadResearcher || 'Dr. Sewasew'}
+                    Dr. Sewasew
                   </span>
                 </div>
               </div>

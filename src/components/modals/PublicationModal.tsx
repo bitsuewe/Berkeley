@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useCms } from '../../context/CmsContext';
 import { useSound } from '../../context/SoundContext';
-import { X, Download, Copy, Check, BookOpen, FileText } from 'lucide-react';
+import { X, Download, Copy, Check, BookOpen } from 'lucide-react';
 import { MagneticButton } from '../ui/MagneticButton';
 
 export const PublicationModal: React.FC = () => {
@@ -9,7 +9,6 @@ export const PublicationModal: React.FC = () => {
   const { playClick } = useSound();
   const [copiedBibtex, setCopiedBibtex] = useState(false);
   const [showBibtex, setShowBibtex] = useState(false);
-  const [readingPdfMode, setReadingPdfMode] = useState(false);
 
   if (!selectedPublication) return null;
 

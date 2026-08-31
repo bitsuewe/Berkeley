@@ -12,13 +12,14 @@ export interface ResearchArea {
   category: string;
   shortDescription: string;
   longDescription: string;
-  modelType: Model3DType;
+  modelType?: Model3DType;
   keyQuestions: string[];
   methodology: string;
   stats: { label: string; value: string }[];
   leadResearcherId: string;
   relatedPublicationIds: string[];
   heroImage?: string;
+  tags?: string[];
 }
 
 export interface Publication {
@@ -35,6 +36,7 @@ export interface Publication {
   citationsCount: number;
   bibtex: string;
   tags: string[];
+  heroImage?: string;
 }
 
 export interface Article {
@@ -49,6 +51,7 @@ export interface Article {
   featured?: boolean;
   heroImage: string;
   figureCaption?: string;
+  tags?: string[];
 }
 
 export interface Person {
@@ -65,10 +68,47 @@ export interface Person {
   researchAreaIds: string[];
 }
 
+export interface CourseModule {
+  week: string;
+  topic: string;
+  readings: string;
+  practicum: string;
+}
+
+export interface Course {
+  id: string;
+  code: string;
+  title: string;
+  credits: string;
+  level: string;
+  term: string;
+  location: string;
+  description: string;
+  prerequisites: string;
+  grading: string;
+  modules: CourseModule[];
+}
+
+export interface OutreachItem {
+  id: string;
+  title: string;
+  tag: string;
+  category: string;
+  img: string;
+  summary: string;
+  stat: string;
+  lead: string;
+  objectives: string[];
+  impactDetails: string;
+  partners: string[];
+}
+
+export type LabImageCategory = 'Equipments' | 'Experiments' | 'Microscopy' | 'Fieldwork' | 'Field Expeditions' | 'Laboratory Forensics' | 'Archaeology Lab';
+
 export interface LabImage {
   id: string;
   title: string;
-  category: 'Equipments' | 'Experiments' | 'Microscopy' | 'Fieldwork';
+  category: LabImageCategory;
   imageUrl: string;
   description: string;
   exif: {
@@ -88,3 +128,4 @@ export interface OpenPosition {
   description: string;
   requirements: string[];
 }
+

@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useEffect } from 'react';
-import { Search, X, Layers, BookOpen, Users, Newspaper, ArrowRight } from 'lucide-react';
+import { Search, X, Layers, BookOpen, Users, Newspaper, GraduationCap, Globe, ArrowRight } from 'lucide-react';
 import { useCms } from '../../context/CmsContext';
 
 export const SearchModal: React.FC = () => {
@@ -10,10 +10,13 @@ export const SearchModal: React.FC = () => {
     publications,
     people,
     articles,
+    courses,
+    outreach,
     setSelectedResearchArea,
     setSelectedPublication,
     setSelectedPerson,
     setSelectedArticle,
+    setCurrentView,
   } = useCms();
 
   const [query, setQuery] = useState('');
@@ -106,15 +109,50 @@ export const SearchModal: React.FC = () => {
       );
     });
 
+    const matchedCourses = (courses || []).filter((c) => {
+      const code = (c?.code || '').toLowerCase();
+      const title = (c?.title || '').toLowerCase();
+      const desc = (c?.description || '').toLowerCase();
+      const loc = (c?.location || '').toLowerCase();
+
+      return (
+        code.includes(q) ||
+        title.includes(q) ||
+        desc.includes(q) ||
+        loc.includes(q)
+      );
+    });
+
+    const matchedOutreach = (outreach || []).filter((o) => {
+      const title = (o?.title || '').toLowerCase();
+      const summary = (o?.summary || '').toLowerCase();
+      const tag = (o?.tag || '').toLowerCase();
+      const lead = (o?.lead || '').toLowerCase();
+
+      return (
+        title.includes(q) ||
+        summary.includes(q) ||
+        tag.includes(q) ||
+        lead.includes(q)
+      );
+    });
+
     return {
       research: matchedResearch,
       publications: matchedPubs,
       people: matchedPeople,
       articles: matchedArticles,
+      courses: matchedCourses,
+      outreach: matchedOutreach,
       totalCount:
-        matchedResearch.length + matchedPubs.length + matchedPeople.length + matchedArticles.length,
+        matchedResearch.length +
+        matchedPubs.length +
+        matchedPeople.length +
+        matchedArticles.length +
+        matchedCourses.length +
+        matchedOutreach.length,
     };
-  }, [query, researchAreas, publications, people, articles]);
+  }, [query, researchAreas, publications, people, articles, courses, outreach]);
 
   if (!searchModalOpen) return null;
 
@@ -128,7 +166,7 @@ export const SearchModal: React.FC = () => {
           <input
             type="text"
             autoFocus
-            placeholder="Search all research, publications, people, news..."
+            placeholder="Search research, papers, people, courses, outreach..."
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             className="w-full bg-transparent text-[#00232e] text-base focus:outline-none placeholder:text-slate-400 font-sans"
@@ -200,6 +238,60 @@ export const SearchModal: React.FC = () => {
                       <div>
                         <div className="text-sm font-bold text-[#00232e] group-hover:text-[#007681]">{p.title}</div>
                         <div className="text-xs text-slate-500 line-clamp-1">{(p.authors || []).join(', ')} • {p.year}</div>
+                      </div>
+                      <ArrowRight className="w-4 h-4 text-slate-300 group-hover:text-[#007681] shrink-0 ml-2" />
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              {/* Courses Matches */}
+              {results.courses.length > 0 && (
+                <div className="space-y-2">
+                  <div className="text-[11px] font-mono font-bold uppercase tracking-wider text-[#007681] flex items-center gap-1.5 px-2">
+                    <GraduationCap className="w-3.5 h-3.5" />
+                    <span>Courses ({results.courses.length})</span>
+                  </div>
+                  {results.courses.map((c) => (
+                    <div
+                      key={c.id}
+                      onClick={() => {
+                        setCurrentView('all-courses');
+                        setSearchModalOpen(false);
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                      }}
+                      className="p-3 rounded-lg hover:bg-slate-50 border border-transparent hover:border-slate-200 transition-all cursor-pointer flex items-center justify-between group"
+                    >
+                      <div>
+                        <div className="text-sm font-bold text-[#00232e] group-hover:text-[#007681]">{c.code}: {c.title}</div>
+                        <div className="text-xs text-slate-500 line-clamp-1">{c.description}</div>
+                      </div>
+                      <ArrowRight className="w-4 h-4 text-slate-300 group-hover:text-[#007681] shrink-0 ml-2" />
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              {/* Outreach Matches */}
+              {results.outreach.length > 0 && (
+                <div className="space-y-2">
+                  <div className="text-[11px] font-mono font-bold uppercase tracking-wider text-[#007681] flex items-center gap-1.5 px-2">
+                    <Globe className="w-3.5 h-3.5" />
+                    <span>Outreach Programs ({results.outreach.length})</span>
+                  </div>
+                  {results.outreach.map((o) => (
+                    <div
+                      key={o.id}
+                      onClick={() => {
+                        setCurrentView('all-outreach');
+                        setSearchModalOpen(false);
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                      }}
+                      className="p-3 rounded-lg hover:bg-slate-50 border border-transparent hover:border-slate-200 transition-all cursor-pointer flex items-center justify-between group"
+                    >
+                      <div>
+                        <div className="text-sm font-bold text-[#00232e] group-hover:text-[#007681]">{o.title}</div>
+                        <div className="text-xs text-slate-500 line-clamp-1">{o.summary}</div>
                       </div>
                       <ArrowRight className="w-4 h-4 text-slate-300 group-hover:text-[#007681] shrink-0 ml-2" />
                     </div>

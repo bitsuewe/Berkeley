@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { ArrowLeft, Search, Users, Mail, ExternalLink, Award } from 'lucide-react';
+import { ArrowLeft, Search, Users, Mail, ExternalLink } from 'lucide-react';
 import { useCms } from '../../context/CmsContext';
 import type { Person } from '../../types/lab';
 
@@ -137,7 +137,7 @@ export const AllPeoplePage: React.FC = () => {
                     {person.name}
                   </h3>
                   <div className="text-xs font-bold text-slate-500 uppercase tracking-wide">
-                    {person.title}
+                    {person.positionTitle}
                   </div>
                   <p className="text-slate-600 text-xs sm:text-sm leading-relaxed font-light line-clamp-3 pt-1">
                     {person.bio}
