@@ -15,6 +15,8 @@ import { AllResearchPage } from './components/pages/AllResearchPage';
 import { AllPublicationsPage } from './components/pages/AllPublicationsPage';
 import { AllNewsPage } from './components/pages/AllNewsPage';
 import { AllPeoplePage } from './components/pages/AllPeoplePage';
+import { AllCoursesPage } from './components/pages/AllCoursesPage';
+import { AllOutreachPage } from './components/pages/AllOutreachPage';
 
 import { PublicationModal } from './components/modals/PublicationModal';
 import { BibtexImportModal } from './components/modals/BibtexImportModal';
@@ -49,6 +51,8 @@ export const MainApp: React.FC = () => {
         {currentView === 'all-publications' && <AllPublicationsPage />}
         {currentView === 'all-news' && <AllNewsPage />}
         {currentView === 'all-people' && <AllPeoplePage />}
+        {currentView === 'all-courses' && <AllCoursesPage />}
+        {currentView === 'all-outreach' && <AllOutreachPage />}
       </main>
 
       {/* Footer */}

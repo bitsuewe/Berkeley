@@ -6,6 +6,9 @@ export default {
   ],
   theme: {
     extend: {
+      screens: {
+        nav: '887px',
+      },
       colors: {
         berkeley: {
           blue: '#00313c',

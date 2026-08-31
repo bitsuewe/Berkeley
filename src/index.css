@@ -94,3 +94,26 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: #77d5dc;
 }
+
+/* Explicit 887px Header Navigation Media Queries */
+@media (min-width: 887px) {
+  .header-nav-desktop {
+    display: flex !important;
+  }
+  .header-nav-mobile-toggle {
+    display: none !important;
+  }
+  .header-nav-mobile-drawer {
+    display: none !important;
+  }
+}
+
+@media (max-width: 886.98px) {
+  .header-nav-desktop {
+    display: none !important;
+  }
+  .header-nav-mobile-toggle {
+    display: flex !important;
+  }
+}
+

@@ -5,7 +5,7 @@ import { useCms } from '../context/CmsContext';
 export const Footer: React.FC = () => {
   const { setCurrentView } = useCms();
 
-  const handleNav = (view: 'all-research' | 'all-publications' | 'all-news' | 'all-people' | 'home', hash?: string) => {
+  const handleNav = (view: 'all-research' | 'all-publications' | 'all-news' | 'all-people' | 'all-courses' | 'all-outreach' | 'home', hash?: string) => {
     setCurrentView(view);
     if (view === 'home' && hash) {
       setTimeout(() => {
@@ -64,24 +64,57 @@ export const Footer: React.FC = () => {
                   onClick={() => handleNav('all-research')}
                   className="hover:text-[#77d5dc] transition-colors cursor-pointer text-left"
                 >
-                  Capabilities &amp; Facilities
+                  Active Projects
                 </button>
               </li>
               <li>
                 <button
-                  onClick={() => handleNav('all-research')}
+                  onClick={() => handleNav('all-publications')}
                   className="hover:text-[#77d5dc] transition-colors cursor-pointer text-left"
                 >
-                  Active Projects
+                  Publications
                 </button>
               </li>
             </ul>
           </div>
 
-          {/* ABOUT Column */}
+          {/* EDUCATION & FIELD Column */}
           <div className="lg:col-span-2 space-y-3">
             <div className="text-xs font-mono font-bold uppercase tracking-wider text-[#77d5dc]">
-              ABOUT
+              ACADEMICS
+            </div>
+            <ul className="space-y-2 text-xs text-white/70 font-light">
+              <li>
+                <button
+                  onClick={() => handleNav('all-courses')}
+                  className="hover:text-[#77d5dc] transition-colors cursor-pointer text-left"
+                >
+                  Courses &amp; Curriculum
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => handleNav('all-courses')}
+                  className="hover:text-[#77d5dc] transition-colors cursor-pointer text-left"
+                >
+                  Afar Field School
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => handleNav('all-outreach')}
+                  className="hover:text-[#77d5dc] transition-colors cursor-pointer text-left"
+                >
+                  Outreach Programs
+                </button>
+              </li>
+            </ul>
+          </div>
+
+          {/* ABOUT & PEOPLE Column */}
+          <div className="lg:col-span-2 space-y-3">
+            <div className="text-xs font-mono font-bold uppercase tracking-wider text-[#77d5dc]">
+              PEOPLE
             </div>
             <ul className="space-y-2 text-xs text-white/70 font-light">
               <li>
@@ -89,7 +122,7 @@ export const Footer: React.FC = () => {
                   onClick={() => handleNav('home', '#about')}
                   className="hover:text-[#77d5dc] transition-colors cursor-pointer text-left"
                 >
-                  About the Lab
+                  About Dr. Sewasew
                 </button>
               </li>
               <li>
@@ -97,32 +130,7 @@ export const Footer: React.FC = () => {
                   onClick={() => handleNav('all-people')}
                   className="hover:text-[#77d5dc] transition-colors cursor-pointer text-left"
                 >
-                  Leadership (Dr. Sewasew)
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => handleNav('all-people')}
-                  className="hover:text-[#77d5dc] transition-colors cursor-pointer text-left"
-                >
-                  People &amp; Careers
-                </button>
-              </li>
-            </ul>
-          </div>
-
-          {/* RESOURCES Column */}
-          <div className="lg:col-span-2 space-y-3">
-            <div className="text-xs font-mono font-bold uppercase tracking-wider text-[#77d5dc]">
-              RESOURCES
-            </div>
-            <ul className="space-y-2 text-xs text-white/70 font-light">
-              <li>
-                <button
-                  onClick={() => handleNav('all-publications')}
-                  className="hover:text-[#77d5dc] transition-colors cursor-pointer text-left"
-                >
-                  Publications Catalog
+                  Lab Members
                 </button>
               </li>
               <li>
@@ -130,15 +138,7 @@ export const Footer: React.FC = () => {
                   onClick={() => handleNav('all-news')}
                   className="hover:text-[#77d5dc] transition-colors cursor-pointer text-left"
                 >
-                  News &amp; Articles
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => handleNav('all-news')}
-                  className="hover:text-[#77d5dc] transition-colors cursor-pointer text-left"
-                >
-                  Events &amp; Symposia
+                  News &amp; Events
                 </button>
               </li>
             </ul>

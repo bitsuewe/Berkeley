@@ -2,7 +2,7 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 import type { ResearchArea, Publication, Article, Person, LabImage, OpenPosition, AccentTheme } from '../types/lab';
 import { INITIAL_RESEARCH_AREAS, INITIAL_PUBLICATIONS, INITIAL_PEOPLE, INITIAL_ARTICLES, INITIAL_LAB_IMAGES, INITIAL_OPEN_POSITIONS } from '../data/initialData';
 
-export type AppView = 'home' | 'all-research' | 'all-publications' | 'all-news' | 'all-people';
+export type AppView = 'home' | 'all-research' | 'all-publications' | 'all-news' | 'all-people' | 'all-courses' | 'all-outreach';
 
 interface CmsContextType {
   currentView: AppView;
